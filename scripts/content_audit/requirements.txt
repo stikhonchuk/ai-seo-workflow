@@ -1,0 +1,11 @@
+# Content Audit Utility Dependencies
+# Install with: pip install -r requirements.txt
+
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+lxml>=4.9.0
+pandas>=1.5.0
+tqdm>=4.65.0
+
+# Russian text normalization (for SEO gap analysis)
+pymorphy3>=2.0.0

@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific data (don't commit to public template)
+# Uncomment these in your private projects:
+# research/webmasters/
+# research/content-audit/*.csv
+# research/content-audit/*.json
+# research/keywords/*.csv
+# research/analytics/
+
+# Config with real values
+scripts/content_audit/config.py
+
+# Logs
+*.log
+audit-log.txt
+
+# Temporary files
+*.tmp
+*.bak
