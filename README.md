@@ -155,35 +155,123 @@ Internal linking, guest posts, digital PR.
 
 ## Using with Multiple Projects
 
-This template supports a "hub and spoke" model:
+This template supports a "hub and spoke" model for managing multiple SEO projects with shared tooling:
 
 ```
-ai-seo-workflow (PUBLIC)     ← This template (upstream)
-       ↓
-   ┌───┴───┬───────┐
-   ↓       ↓       ↓
-project-a  project-b  project-c (PRIVATE)
+┌─────────────────────────────────────────────────────────────────┐
+│                     PUBLIC TEMPLATE REPO                        │
+│                    ai-seo-workflow (GitHub)                     │
+│                                                                 │
+│  - External contributors fork & PR here                         │
+│  - You cherry-pick improvements from private repos              │
+│  - Tagged releases (v1.0, v1.1, v2.0)                          │
+└─────────────────────────────────────────────────────────────────┘
+         ▲                    │                    ▲
+         │ cherry-pick        │ git pull           │ cherry-pick
+         │ (anonymized)       │ upstream           │ (anonymized)
+         │                    ▼                    │
+┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐
+│   project-a     │   │   project-b     │   │   project-c     │
+│    (private)    │   │    (private)    │   │    (private)    │
+└─────────────────┘   └─────────────────┘   └─────────────────┘
 ```
 
-### Setup Upstream Remote
+### Initial Setup for New Private Project
+
+```bash
+# Option 1: Clone template (recommended for new projects)
+git clone https://github.com/YOUR-USERNAME/ai-seo-workflow.git my-project
+cd my-project
+rm -rf .git && git init
+git remote add origin git@github.com:YOUR-USERNAME/my-project.git
+git remote add upstream https://github.com/YOUR-USERNAME/ai-seo-workflow.git
+
+# Option 2: Add upstream to existing project
+cd existing-project
+git remote add upstream https://github.com/YOUR-USERNAME/ai-seo-workflow.git
+```
+
+### Workflow: Pulling Template Updates
 
 ```bash
 # In your private project
-git remote add upstream https://github.com/YOUR-USERNAME/ai-seo-workflow.git
-
-# Pull updates from template
 git fetch upstream
 git merge upstream/main
+# Or cherry-pick specific commits:
+git cherry-pick <commit-hash>
 ```
 
-### Contributing Improvements Back
+### Workflow: Contributing Improvements Back to Template
 
-1. Make improvement in your private project
-2. Test it works
-3. Cherry-pick or manually copy to template
-4. Run anonymization check: `python scripts/anonymize.py --check .`
-5. Push to template repo
-6. Pull to other projects: `git pull upstream main`
+**Step 1: Make and test improvement in private project**
+```bash
+# In your private project
+# Edit files, test changes
+git add <files>
+git commit -m "Add feature X"
+git push origin main
+```
+
+**Step 2: Check for sensitive data**
+```bash
+# Run anonymization check on changed files
+python ~/path-to-template/scripts/anonymize.py --check <file-or-directory>
+```
+
+**Step 3: Copy to template and anonymize**
+```bash
+# Copy file to template
+cp <file> ~/path-to-template/<same-path>/
+
+# In template directory, run anonymize
+cd ~/path-to-template
+python scripts/anonymize.py <file-or-directory>
+
+# Review changes
+git diff
+```
+
+**Step 4: Commit and push to template**
+```bash
+git add <files>
+git commit -m "Add feature X"
+git push origin main
+```
+
+**Step 5: Pull to other private projects**
+```bash
+cd ~/other-project
+git fetch upstream
+git cherry-pick <commit-hash>  # or git merge upstream/main
+git push origin main
+```
+
+### Anonymization Script
+
+The `scripts/anonymize.py` helps prepare files for public contribution:
+
+```bash
+# Check for unanonymized data
+python scripts/anonymize.py --check .
+
+# List current replacement patterns
+python scripts/anonymize.py --list-patterns
+
+# Dry run - see what would change
+python scripts/anonymize.py --dry-run .
+
+# Apply anonymization
+python scripts/anonymize.py .
+```
+
+**Customize patterns** by editing `REPLACEMENTS` list in `scripts/anonymize.py`:
+```python
+REPLACEMENTS = [
+    (r'your-domain\.com', '[YOUR-DOMAIN]'),
+    (r'Your Name', '[OWNER_NAME]'),
+    # Add your patterns...
+]
+```
 
 ## Content Audit Utility
 
