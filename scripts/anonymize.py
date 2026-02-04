@@ -12,27 +12,31 @@ from typing import Dict, List, Tuple
 
 # Replacement rules: (pattern, replacement)
 # Order matters - more specific patterns should come first
+#
+# CUSTOMIZE THIS for your project:
+# 1. Replace example.com with your actual domain
+# 2. Add your owner/business names
+# 3. Add any project-specific patterns
+#
 REPLACEMENTS: List[Tuple[str, str]] = [
-    # Domain variations (case-insensitive handled in anonymize_content)
-    (r'https?://(?:www\.)?shoe-it\.ru', 'https://[YOUR-DOMAIN]'),
-    (r'www\.shoe-it\.ru', '[YOUR-DOMAIN]'),
-    (r'shoe-it\.ru', '[YOUR-DOMAIN]'),
-    (r'[Ss]hoe-it', '[YOUR-PROJECT]'),
+    # Domain variations - REPLACE example.com WITH YOUR DOMAIN
+    # (r'https?://(?:www\.)?example\.com', 'https://[YOUR-DOMAIN]'),
+    # (r'www\.example\.com', '[YOUR-DOMAIN]'),
+    # (r'example\.com', '[YOUR-DOMAIN]'),
+    # (r'[Ee]xample-project', '[YOUR-PROJECT]'),
 
-    # Contact information (example patterns - add your own)
-    (r'\+7\s*\(\d{3}\)\s*\d{3}-\d{2}-\d{2}', '[PHONE]'),
-    (r'[a-zA-Z0-9._%+-]+@gmail\.com', '[EMAIL]'),
+    # Contact information (generic patterns)
+    (r'\+7\s*\(\d{3}\)\s*\d{3}-\d{2}-\d{2}', '[PHONE]'),  # Russian phone
+    (r'\+1\s*\(\d{3}\)\s*\d{3}-\d{4}', '[PHONE]'),  # US phone
+    (r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}', '[EMAIL]'),  # Any email
 
-    # Owner/business names (add specific ones)
+    # Russian business names (generic pattern)
     (r'ИП\s+[А-Яа-яЁё]+\s+[А-Яа-яЁё]+\s+[А-Яа-яЁё]+', 'ИП [OWNER_NAME]'),
-    (r'Андрианова\s+Юлия\s+Владимировна', '[OWNER_NAME]'),
 
-    # Addresses (Moscow example)
-    (r'Москва,\s+[^,]+,\s+д\.\s*\d+[^)]*', '[ADDRESS]'),
-
-    # Specific brand names that might be identifying (optional)
-    # (r'Premiata', '[BRAND_A]'),
-    # (r'INUIKII', '[BRAND_B]'),
+    # Add your specific patterns below:
+    # (r'Your Name Here', '[OWNER_NAME]'),
+    # (r'Your Address', '[ADDRESS]'),
+    # (r'YourBrand', '[BRAND]'),
 ]
 
 # File extensions to process
@@ -140,10 +144,12 @@ def find_unanonymized(directory: Path) -> List[Tuple[Path, str, str]]:
     Returns list of (filepath, line, match).
     """
     # Patterns to search for (simpler versions for detection)
+    # CUSTOMIZE: Add your domain/project patterns here
     search_patterns = [
-        r'shoe-it',
-        r'\+7\s*\(\d{3}\)',  # Russian phone
-        r'@gmail\.com',
+        # r'your-domain',  # Add your domain pattern
+        r'\+7\s*\(\d{3}\)',  # Russian phone numbers
+        r'\+1\s*\(\d{3}\)',  # US phone numbers
+        # r'@yourdomain\.com',  # Your email domain
     ]
 
     findings = []
@@ -176,6 +182,8 @@ def main():
                         help='Show what would be changed without modifying files')
     parser.add_argument('--check', '-c', action='store_true',
                         help='Check for remaining unanonymized data')
+    parser.add_argument('--list-patterns', '-l', action='store_true',
+                        help='List current replacement patterns')
     parser.add_argument('--verbose', '-v', action='store_true',
                         help='Verbose output')
 
@@ -189,6 +197,16 @@ def main():
     print(f"Processing: {directory}")
     print(f"Mode: {'DRY RUN' if args.dry_run else 'LIVE'}")
     print()
+
+    if args.list_patterns:
+        print("Current replacement patterns:\n")
+        for pattern, replacement in REPLACEMENTS:
+            status = "active" if not pattern.startswith('#') else "commented"
+            print(f"  {pattern}")
+            print(f"    → {replacement}\n")
+        print(f"Total: {len(REPLACEMENTS)} patterns")
+        print("\nEdit REPLACEMENTS list in this file to customize.")
+        sys.exit(0)
 
     if args.check:
         print("Checking for unanonymized data...")
