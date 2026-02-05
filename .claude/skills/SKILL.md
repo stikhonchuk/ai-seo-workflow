@@ -48,7 +48,7 @@ This directory contains custom Claude Code skills that automate common workflows
 ### Content Quality
 
 **review-article** - Run multi-critic review on content drafts
-- Runs 6 specialized critics: SEO, Russian Language, E-E-A-T, User Intent, Readability, Commercial
+- Runs 8 specialized critics: SEO, Russian Language, English Language, E-E-A-T, User Intent, Readability, Commercial, Image Prompts
 - Generates comprehensive review report with scores
 - Provides prioritized fix list and revision checklist
 - Usage: `/review-article` (most recent draft)
@@ -78,10 +78,12 @@ All skill implementations are in subdirectories:
 Critic definitions are in `.claude/critics/`:
 - `seo-critic.md`
 - `russian-language-critic.md`
+- `english-language-critic.md`
 - `eeat-critic.md`
 - `user-intent-critic.md`
 - `readability-critic.md`
 - `commercial-critic.md`
+- `image-prompt-critic.md`
 - `image-prompt-critic.md`
 
 ## How Skills Work

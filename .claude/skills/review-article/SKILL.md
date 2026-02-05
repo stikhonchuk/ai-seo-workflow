@@ -12,6 +12,7 @@ When this skill is invoked, run a comprehensive multi-critic review on a content
 - `/review-article [filename]` - Review specific file
 - `/review-article --critic=seo` - Run only SEO critic
 - `/review-article --critic=russian` - Run only Russian language critic
+- `/review-article --critic=english` - Run only English language critic
 - `/review-article --critic=eeat` - Run only E-E-A-T critic
 - `/review-article --critic=intent` - Run only User Intent critic
 - `/review-article --critic=readability` - Run only Readability critic
@@ -39,6 +40,7 @@ When this skill is invoked, run a comprehensive multi-critic review on a content
 Read the relevant critic files from `.claude/critics/`:
 - `seo-critic.md`
 - `russian-language-critic.md`
+- `english-language-critic.md`
 - `eeat-critic.md`
 - `user-intent-critic.md`
 - `readability-critic.md`
@@ -52,6 +54,7 @@ Read the relevant critic files from `.claude/critics/`:
 |--------|-------|-----------|
 | SEO | **Sonnet** | Structured analysis, keyword counting, technical checks |
 | Russian Language | **Opus** | Deep linguistic understanding, nuance detection, native-quality assessment |
+| English Language | **Opus** | Nuanced judgment for tone, clarity, and professional writing |
 | E-E-A-T | **Sonnet** | Pattern matching for trust signals, factual evaluation |
 | User Intent | **Sonnet** | Intent classification, content gap analysis |
 | Readability | **Haiku** | Mechanical: sentence/paragraph counting, structure checks |
@@ -61,7 +64,7 @@ Read the relevant critic files from `.claude/critics/`:
 #### Execution Order (Parallel where possible)
 1. **Parallel batch 1 (Haiku):** Readability + Commercial + Image Prompts (fast, independent)
 2. **Parallel batch 2 (Sonnet):** SEO + E-E-A-T + User Intent
-3. **Sequential (Opus):** Russian Language (most expensive, run last)
+3. **Sequential (Opus):** Russian Language OR English Language (use appropriate one based on content language; most expensive, run last)
 
 This order optimizes for:
 - Cost efficiency (cheap critics first to catch obvious issues)
