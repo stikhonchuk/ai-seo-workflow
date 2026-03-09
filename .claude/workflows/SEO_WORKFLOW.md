@@ -1,295 +1,359 @@
-# SEO Workflow for [YOUR-DOMAIN]
+# SEO Master Workflow
 
 ## Overview
-Complete SEO optimization workflow for shoe e-commerce website, covering keyword research, content planning, and content creation.
+
+This is the **master workflow** for the SEO project. All other workflows, skills, and scripts are referenced from here. Follow phases 1-4 sequentially during initial setup, then cycle through phases 5-8 monthly.
+
+→ See `client.md` for company info, domains, services, content pillars, and audiences.
+
+---
+
+## Workflow Map
+
+```
+INITIAL SETUP (once):
+  Phase 1: Audit ──→ Phase 2: Keywords ──→ Phase 3: Competitors ──→ Phase 4: Strategy
+                                                                          │
+MONTHLY CYCLE (repeat): ◄────────────────────────────────────────────────┘
+  Phase 5: Write ──→ Phase 6: Review & Publish ──→ Phase 7: Amplify (SMM)
+      │                                                       │
+      │                   Phase 8: Link Building (ongoing) ◄──┘
+      │                                                       │
+      └──── Monthly Close: Audit → Report → Plan Next Month ──┘
+```
+
+## Skills & Scripts Map
+
+| Skill/Script | Phase | Model | Purpose |
+|---|---|---|---|
+| `/brainstorm` | 1, 4 | **Opus** | Content ideation, strategy brainstorming |
+| `/writing-guide` | 5 | **Sonnet** | Load writing standards and content templates |
+| `/review-article` | 6 | **Multi** | 8-critic content review before publishing |
+| `/create-social-posts` | 7 | **Sonnet** | Generate social media posts from published article |
+| `/monthly-report` | Monthly | **Sonnet** | Generate monthly performance report |
+| `/analyze-gsc` | Monthly | **Sonnet** | Analyze Google Search Console data |
+| `/analyze-webmaster` | Monthly | **Sonnet** | Analyze Yandex Webmaster data |
+| `/start-session` | Every session | — | Load context, show current phase and next actions |
+| `/end-session` | Every session | — | Save progress, workflow compliance check, commit |
+| `content_audit/main.py` | 1, Monthly | script | Scrape & analyze site content |
+| `process_keywords.py` | 2 | script | Process keyword CSV exports |
+
+## Session Wrapper
+
+Every working session follows this pattern:
+```
+/start-session → See current phase and next actions
+     ↓
+Work on current phase tasks
+     ↓
+/end-session → Save progress, check workflow compliance, commit
+```
 
 ---
 
 ## Phase 1: Website Analysis & Audit
 
-### 1.1 Current State Assessment
-- [ ] Analyze existing website structure
-- [ ] Review current product categories
-- [ ] Identify existing content assets
-- [ ] Check current SEO implementation (meta tags, headings, alt texts)
-- [ ] Analyze site speed and technical SEO
-- [ ] Review mobile responsiveness
+**Goal:** Understand current state of all sites
+**Duration:** 1-2 sessions
+**Phase gate:** Audit complete, baseline metrics documented in `research/content-audit/`
 
-### 1.2 Target Audience Definition
-- [ ] Define primary customer personas
-- [ ] Identify customer pain points
-- [ ] Map customer journey stages
-- [ ] Determine search intent patterns
+### Actions
+
+1. **Run content audit script:**
+   ```bash
+   venv/bin/python scripts/content_audit/main.py --full --all
+   ```
+   → See [monthly-content-audit.md](monthly-content-audit.md) for detailed instructions and output files.
+
+2. **Analyze audit results:**
+   - [ ] Review existing page inventory (content-audit CSV)
+   - [ ] Identify keyword cannibalization (duplicate keywords across pages)
+   - [ ] List thin content pages (<300 words) from content-gaps.md
+   - [ ] Check current SEO implementation (meta tags, headings, alt texts)
+   - [ ] Check schema markup → See `client.md#schema-markup` for required types
+
+3. **Technical SEO check:**
+   - [ ] Site speed analysis
+   - [ ] Mobile responsiveness
+   - [ ] XML sitemap validation
+   - [ ] robots.txt review
+
+4. **Verify target audience alignment:**
+   → See `client.md#target-audiences` for defined personas
+
+5. **Document baseline metrics:**
+   - Save to: `research/content-audit/baseline-[YYYY-MM-DD].md`
+
+**Optional:** Use `/brainstorm` (Opus) to ideate on content strategy directions based on audit findings.
+
+### Phase 1 Output
+- `research/content-audit/[site]/site-content-audit-latest.csv`
+- `research/content-audit/[site]/content-gaps-latest.md`
+- `research/content-audit/baseline-[date].md`
 
 ---
 
 ## Phase 2: Keyword Research
 
-### 2.1 Seed Keyword Collection
-- [ ] Product-focused keywords (shoe types, brands)
-- [ ] Informational keywords (how-to, guides)
-- [ ] Commercial keywords (best shoes for, reviews)
-- [ ] Local keywords (if applicable)
+**Goal:** Build prioritized keyword list for all languages
+**Duration:** 2-3 sessions
+**Phase gate:** Priority keywords documented, keyword mapping complete
+**Reference:** [KEYWORD_RESEARCH_TEMPLATE.md](KEYWORD_RESEARCH_TEMPLATE.md)
 
-### 2.2 Keyword Research Tools
-- **Free Tools:**
-  - Google Keyword Planner
-  - Google Search Console (existing data)
-  - Google Trends
-  - AnswerThePublic
-  - Ubersuggest (limited free)
+### Actions
 
-- **Paid Tools (optional):**
-  - Ahrefs
-  - SEMrush
-  - Moz Keyword Explorer
+1. **Collect seed keywords** by service/content pillar:
+   → See `client.md#seed-keyword-areas` for starting keywords
+   → See `client.md#content-pillars` for topic categories
 
-### 2.3 Keyword Analysis Criteria
-For each keyword, document:
-- Search volume (monthly)
-- Keyword difficulty (competition)
-- Search intent (informational, commercial, transactional, navigational)
-- Current ranking (if any)
-- Business relevance (1-10 score)
-- Priority level (High/Medium/Low)
+2. **Use research tools:**
+   - Google Keyword Planner → export CSV
+   - Yandex Wordstat → export CSV (for RU market)
+   - Google Search Console → existing performance
+   - Google Trends → seasonal patterns
 
-### 2.4 Keyword Categorization
-Organize keywords by:
-- **Transactional:** Buy, shop, order (product pages)
-- **Commercial:** Best, review, comparison (buying guides)
-- **Informational:** How to, what is, guide (blog content)
-- **Navigational:** Brand names, specific products
+3. **Process keyword exports:**
+   ```bash
+   # Place CSV exports in research/keywords/input/
+   venv/bin/python scripts/process_keywords.py
+   # Output: research/keywords/output/en/ and /ru/
+   ```
+
+4. **Analyze and prioritize:**
+   - For each keyword: volume, difficulty, intent, relevance (1-10)
+   - Categorize: Transactional / Commercial / Informational / Navigational
+   - Select top 50 priority keywords
+
+5. **Create keyword mapping:**
+   - Map keywords to content types and target pages
+   → See `client.md#site-structure` for valid page patterns
+
+### Phase 2 Output
+- `research/keywords/seed-keywords.md`
+- `research/keywords/priority-keywords.md` (top 50)
+- `research/keywords/output/en/keywords-en.csv`
+- `research/keywords/output/ru/keywords-ru.csv`
 
 ---
 
 ## Phase 3: Competitor Analysis
 
-### 3.1 Identify Competitors
-- [ ] Direct competitors (similar shoe e-commerce sites)
-- [ ] Indirect competitors (general footwear retailers)
-- [ ] Content competitors (shoe blogs, review sites)
+**Goal:** Understand competitive landscape, find content gaps
+**Duration:** 1-2 sessions
+**Phase gate:** Competitor profiles documented, opportunities identified
 
-### 3.2 Competitor Research
-For each competitor:
-- [ ] What keywords are they ranking for?
-- [ ] What content types do they produce?
-- [ ] What's their content frequency?
-- [ ] What's their backlink profile like?
-- [ ] What content gaps exist?
+### Actions
 
-### 3.3 Opportunity Identification
-- [ ] Keywords competitors rank for but you don't
-- [ ] Content topics they're missing
-- [ ] Better content angle opportunities
-- [ ] Link building opportunities
+1. **Identify competitors:**
+   → See `client.md#competitors` for initial competitor list
+
+2. **For each competitor (5-10):**
+   - [ ] What keywords are they ranking for?
+   - [ ] What content types do they produce?
+   - [ ] What's their content frequency?
+   - [ ] What services do they highlight?
+   - [ ] What content gaps exist?
+
+3. **Identify opportunities:**
+   - [ ] Keywords competitors rank for but we don't
+   - [ ] Content topics they're missing
+   → See `client.md#competitive-advantages` for positioning angles
+   - [ ] Comparison article opportunities
+
+### Phase 3 Output
+- `research/competitors/competitor-analysis.md`
 
 ---
 
 ## Phase 4: Content Strategy & Publication Plan
 
-### 4.1 Content Pillars
-Define 4-6 main content themes:
-- Example: "Shoe Care & Maintenance"
-- Example: "Shoe Buying Guides"
-- Example: "Fashion & Style Tips"
-- Example: "Shoe Technology & Innovation"
-- Example: "Foot Health & Comfort"
+**Goal:** Create actionable content calendar for first 3 months
+**Duration:** 1-2 sessions
+**Phase gate:** Content calendar created with article briefs
+**Reference:** [CONTENT_CALENDAR_TEMPLATE.md](CONTENT_CALENDAR_TEMPLATE.md)
 
-### 4.2 Content Types
-- **Product Pages:** Optimized product descriptions
-- **Category Pages:** Collection overviews
-- **Blog Articles:** Educational, informational content
-- **Buying Guides:** Comparison and recommendation content
-- **How-to Guides:** Practical tutorials
-- **FAQ Pages:** Common questions answered
-- **Video Content:** Unboxing, reviews, styling tips
+### Actions
 
-### 4.3 Content Calendar Template
-For each content piece:
-- Title (working title)
-- Primary keyword
-- Secondary keywords (2-5)
-- Search intent
-- Content type
-- Target word count
-- Target audience
-- Publication date
-- Author/Responsible person
-- Status (Planning/Research/Writing/Editing/Published)
-- Internal linking opportunities
-- CTA (Call to Action)
+1. **Define content calendar** using keyword priorities:
+   → See `client.md#publishing-schedule` for frequency and schedule
+   → See `client.md#content-pillars` for topic categories
+   → See `client.md#content-types` for article formats
 
-### 4.4 Publication Frequency
-- Week 1-4: 2-3 articles per week (foundation building)
-- Month 2-3: 2 articles per week (consistent publishing)
-- Month 4+: 1-2 articles per week (maintenance + updates)
+2. **Create article briefs** with:
+   - Title (working), primary keyword, language
+   - Secondary keywords, search intent
+   - Content type, target word count
+   - Target audience → See `client.md#target-audiences`
+   - CTAs → See `client.md#ctas`
+   - Internal linking targets → See `client.md#site-structure`
+
+3. **Use `/brainstorm` (Opus)** for topic ideation if needed
+
+### Phase 4 Output
+- `content/calendars/[MONTH]_CONTENT_CALENDAR.md`
 
 ---
 
-## Phase 5: Content Creation Guidelines
+## Phase 5: Content Creation (Monthly Cycle)
 
-### 5.1 SEO Writing Best Practices
-- **Title Tag:** Include primary keyword, keep under 60 characters
-- **Meta Description:** Compelling summary with keyword, 150-160 characters
-- **URL Structure:** Short, descriptive, include keyword
-- **Headings:** H1 (one per page), H2, H3 hierarchy with keywords
-- **Keyword Usage:** Natural placement, avoid keyword stuffing
-- **Content Length:** Min 800 words for blog posts, 1,500+ for pillar content
-- **Images:** Optimized file size, descriptive alt text with keywords
-- **Internal Links:** 3-5 relevant internal links per article
-- **External Links:** 1-2 authoritative sources
-- **CTA:** Clear call-to-action in each piece
+**Goal:** Write SEO-optimized articles per calendar
+**Model recommendation:** **Sonnet** for drafting, **Opus** for complex/nuanced content
+**Phase gate:** Draft complete, saved to `content/drafts/`
 
-### 5.2 Content Structure Template
-```
-1. Catchy Title (with primary keyword)
-2. Introduction (hook + what reader will learn)
-3. Table of Contents (for long articles)
-4. Main Content (H2 sections with H3 subsections)
-5. Key Takeaways / Summary
-6. FAQ Section (optional but recommended)
-7. Call-to-Action
-8. Related Articles/Products
-```
+### Actions
 
-### 5.3 E-commerce Specific Elements
-- Product schema markup
-- Customer reviews integration
-- Product comparison tables
-- Size guides
-- Shipping/return information
-- Trust signals (security badges, guarantees)
+1. **Load writing standards:**
+   - Run `/writing-guide` (Sonnet) to load content templates and requirements
+   - Reference `.claude/prompts/content-generation.md` for article type prompts
+
+2. **Write article following standards:**
+   → See `client.md#content-standards` for word count, keyword density, link requirements
+   → See `client.md#ctas` for call-to-action language
+   → See `client.md#market-separation-rules` for bilingual rules
+   → See `client.md#brand` for visual style and image requirements
+
+3. **Save draft:**
+   - Save to: `content/drafts/[slug]-[lang].md`
+   - Include YAML frontmatter: keyword, secondary keywords, intent, word count target
+
+### Phase 5 References
+- `/writing-guide` skill — loads writing standards
+- `.claude/prompts/content-generation.md` — article type prompt templates
+- [CONTENT_WRITING_GUIDE.md](CONTENT_WRITING_GUIDE.md) — full reference document
 
 ---
 
-## Phase 6: Content Optimization & Publishing
+## Phase 6: Review & Publish
 
-### 6.1 Pre-Publishing Checklist
-- [ ] Primary keyword in title, first paragraph, and conclusion
-- [ ] Secondary keywords naturally distributed
-- [ ] All images compressed and have alt text
-- [ ] Internal links added (minimum 3)
-- [ ] External authoritative links added (1-2)
-- [ ] Meta title and description optimized
-- [ ] URL is SEO-friendly
-- [ ] Mobile-friendly formatting
-- [ ] Schema markup added (where applicable)
-- [ ] CTA is clear and compelling
+**Goal:** Quality-gate articles and publish
+**Phase gate:** All critics ≥7, overall ≥8
 
-### 6.2 Post-Publishing Tasks
-- [ ] Submit URL to Google Search Console
-- [ ] Share on social media channels
-- [ ] Add to email newsletter (if applicable)
-- [ ] Monitor for indexing
-- [ ] Track initial rankings
+### Actions
 
----
+1. **Run multi-critic review:**
+   ```
+   /review-article [filename]
+   ```
+   - 8 critics run in optimized order (Haiku → Sonnet → Opus)
+   - Review saved to: `content/reviews/review-[filename]-[date].md`
 
-## Phase 7: Monitoring & Improvement
+2. **Score interpretation:**
+   - ≥8 overall: Ready to publish
+   - 6-7: Fix issues, re-review
+   - <6: Major revision needed
 
-### 7.1 Monthly Content Audit (End of Month)
+3. **Fix issues and re-review** until passing
 
-**Run before monthly report and next month planning:**
+4. **Pre-publishing checklist:**
+   - [ ] Primary keyword in title, intro, conclusion
+   - [ ] Meta title (50-60 chars), meta description (150-160 chars)
+   - [ ] All images have alt text
+   - [ ] Internal links validated (3+) → See `client.md#site-structure` for valid URLs
+   - [ ] External links to authoritative sources (1-2)
+   - [ ] Schema markup added → See `client.md#schema-markup`
+   - [ ] Mobile-friendly formatting
+   - [ ] CTA clear → See `client.md#ctas`
 
-```bash
-# Full content audit (~10 minutes)
-venv/bin/python scripts/content_audit/main.py --full
-```
-
-**What it does:**
-- Scans all blog and collection pages (~585 pages)
-- Extracts: title, H1, meta, word count, top keywords
-- Enriches with GSC data (clicks, impressions, positions)
-- Generates reports: CSV, JSON, Markdown
-
-**Output files:**
-```
-research/content-audit/
-├── site-content-audit.csv      # Main report (Excel-friendly)
-├── site-content-audit.json     # Full data + statistics
-├── content-gaps.md             # Low word count pages
-└── audit-log.txt               # Execution log
-```
-
-**How to use:**
-1. **For monthly report:** Use current metrics from CSV
-2. **For planning next month:** Check existing topics to avoid duplication
-3. **For content gaps:** Review `content-gaps.md` for improvement opportunities
-4. **For tracking progress:** Compare metrics month-over-month
-
-**Frequency:**
-- **Required:** Last day of each month (before monthly report)
-- **Optional:** Mid-month update (`--update-webmaster` for faster GSC refresh)
-
-### 7.2 Key Metrics to Track
-- **Rankings:** Track keyword positions (weekly/monthly)
-- **Traffic:** Organic sessions, pageviews, bounce rate
-- **Engagement:** Time on page, pages per session
-- **Conversions:** Goal completions, revenue from organic
-- **Technical:** Page speed, crawl errors, indexing status
-- **Content Quality:** Word count, keyword coverage (from audit)
-
-### 7.3 Tools for Monitoring
-- Google Search Console
-- Google Analytics 4
-- Yandex Webmaster
-- Content Audit Utility (scripts/content_audit/)
-- Rank tracking tools (SERPWatcher, Ahrefs, SEMrush)
-- Page speed tools (PageSpeed Insights, GTmetrix)
-
-### 7.4 Content Updates
-- Review and update content every 6 months
-- Refresh statistics and outdated information
-- Add new sections based on user questions
-- Improve underperforming content (use content-gaps.md)
-- Consolidate thin or duplicate content
-- Expand low word count pages (<300 words)
+5. **Post-publishing:**
+   - [ ] Submit URL to search engines → See `client.md#domains` for which engines per site
+   - [ ] Move article to `content/published/`
+   - [ ] Update content calendar status
 
 ---
 
-## Phase 8: Link Building Strategy
+## Phase 7: Social Media Amplification
 
-### 8.1 Internal Linking
+**Goal:** Repurpose published article across social channels
+**Model recommendation:** **Sonnet**
+**Reference:** [SMM_WORKFLOW.md](SMM_WORKFLOW.md) — channel-specific strategies
+
+### Actions
+
+1. **Generate social posts:**
+   ```
+   /create-social-posts [published-article]
+   ```
+   - Creates 10+ platform-specific posts
+   - 7-day publishing schedule with UTM links
+   → See `client.md#social-media-channels` for channel list, tones, and rules
+
+2. **Review and publish** per schedule in `content/social/`
+
+3. **Track engagement** weekly per channel
+
+### Connection to SEO Workflow
+- SMM amplification starts **after** article is published (Phase 6 complete)
+- Each published article triggers one `/create-social-posts` cycle
+- Social posts drive initial traffic, supporting early SEO signals
+
+---
+
+## Phase 8: Link Building (Ongoing, Month 3+)
+
+**Goal:** Build authority through internal and external links
+
+### Internal Linking
 - Link from high-authority pages to new content
-- Create topic clusters around pillar content
+- Create topic clusters around content pillars → See `client.md#content-pillars`
 - Use descriptive anchor text
+- Cross-link between language versions via hreflang (not in-content)
 
-### 8.2 External Link Building
-- Guest posting on fashion/lifestyle blogs
-- Product reviews and collaborations
-- Resource page link building
-- Broken link building
-- Digital PR and brand mentions
-- Social media engagement
-
----
-
-## Success Metrics & Goals
-
-### Month 1-3 (Foundation)
-- 20-30 pieces of optimized content published
-- Basic technical SEO issues resolved
-- Keyword tracking setup complete
-- 10-20% increase in organic traffic
-
-### Month 4-6 (Growth)
-- 50+ total optimized pages
-- Ranking in top 20 for 30+ target keywords
-- 30-50% increase in organic traffic
-- Initial conversion tracking and optimization
-
-### Month 7-12 (Scaling)
-- 100+ total optimized pages
-- Ranking in top 10 for 50+ target keywords
-- 100%+ increase in organic traffic
-- Established authority in niche
-- Consistent monthly organic revenue growth
+### External Link Building
+→ Tactics depend on client industry. Typical approaches:
+- Industry directories and listings
+- Guest posting on industry blogs
+- Linkable resources (templates, frameworks, tools)
+- Case studies shared in industry publications
 
 ---
 
-## Next Steps
-1. Complete website audit
-2. Execute keyword research
-3. Create detailed content calendar
-4. Begin content production
-5. Monitor and iterate
+## Monthly Close Cycle
+
+**Timing:** Last working day of each month
+**Purpose:** Measure, report, plan next month
+**This cycle connects Phase 7 back to Phase 5 for the next month.**
+
+### Step 1: Run Content Audit
+```bash
+venv/bin/python scripts/content_audit/main.py --full --all
+```
+→ See [monthly-content-audit.md](monthly-content-audit.md) for details.
+
+### Step 2: Analyze Search Data
+If data exports are available:
+```
+/analyze-gsc [date]          # Google Search Console trends (Sonnet)
+/analyze-webmaster [date]    # Yandex Webmaster analysis (Sonnet)
+```
+
+### Step 3: Generate Monthly Report
+```
+/monthly-report [YYYY-MM]    # (Sonnet)
+```
+Uses content audit data + search analytics to create performance report.
+Save to: `research/analytics/monthly-reports/report-[YYYY-MM].md`
+
+### Step 4: Plan Next Month
+1. Review content calendar — what was published, what was missed
+2. Check content-gaps.md — new gaps to address
+3. Review keyword rankings — new opportunities
+4. Create next month's content calendar: `content/calendars/[MONTH]_CONTENT_CALENDAR.md`
+5. Update `progress.md` with new monthly goals
+
+### Monthly Close Output
+- `research/content-audit/[site]/site-content-audit-[date].csv`
+- `research/analytics/monthly-reports/report-[YYYY-MM].md`
+- `content/calendars/[NEXT-MONTH]_CONTENT_CALENDAR.md`
+
+---
+
+## Success Metrics
+
+→ See `client.md#project-goals` for specific targets and quarterly milestones.
+
+### Generic Milestones by Phase
+| Period | Content | Rankings | Traffic |
+|--------|---------|----------|---------|
+| Month 1-3 | Foundation content (2-3x articles/month) | Building index | 10-20% growth |
+| Month 4-6 | Steady cadence | Top-20 for 20+ keywords | 30-50% growth |
+| Month 7-12 | Full production | Top-10 for 30+ keywords | 100%+ growth |

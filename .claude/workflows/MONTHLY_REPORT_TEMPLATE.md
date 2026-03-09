@@ -1,6 +1,6 @@
 # Ежемесячный отчёт: [Месяц YYYY]
 
-**Клиент:** [YOUR-DOMAIN]  
+**Клиент:** Ksentra (→ See client.md#domains)
 **Период:** [Даты месяца]  
 **Дата отчёта:** [Дата]
 
@@ -98,12 +98,13 @@
 
 1. **Запустить Content Audit** (последний день месяца):
    ```bash
-   python3 scripts/content_audit/main.py --full
+   venv/bin/python scripts/content_audit/main.py --full --all
    ```
 
-2. **Собрать данные**:
-   - Объём контента: `research/content-audit/site-content-audit-latest.csv`
-   - Топ страницы: `research/content-audit/content-gaps-latest.md`
+2. **Собрать данные** (для каждого сайта):
+   - Объём контента: `research/content-audit/[domain-1]/site-content-audit-latest.csv` (EN)
+   - Объём контента: `research/content-audit/[domain-2]/site-content-audit-latest.csv` (RU)
+   - Топ страницы: `research/content-audit/[domain-1]/content-gaps-latest.md`
    - Ключевые слова: CSV колонка `top_keywords`
    - Метрики: CSV колонки `yandex_clicks`, `yandex_impressions`, `yandex_position`
 

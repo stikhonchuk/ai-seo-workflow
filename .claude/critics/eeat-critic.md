@@ -15,14 +15,14 @@ Validates content against Google's Experience, Expertise, Authoritativeness, and
 - [ ] Practical tips from actual experience
 
 **Look For:**
-- "Based on our experience..."
-- Specific comfort/fit observations
-- Real wearing scenarios
-- Comparative insights from testing
+- "Based on our experience running digital marketing campaigns..."
+- Specific usage scenarios and workflow examples
+- Real-world case studies or implementation stories
+- Comparative insights from testing different approaches
 
 **Avoid:**
 - Generic descriptions anyone could write
-- Pure specification lists without context
+- Pure feature lists without context
 - Vague superlatives without justification
 
 ### 2. Expertise (Topic Knowledge)
@@ -33,10 +33,10 @@ Validates content against Google's Experience, Expertise, Authoritativeness, and
 - [ ] Industry knowledge demonstrated
 
 **Look For:**
-- Correct shoe construction terminology
-- Understanding of materials and their properties
-- Knowledge of brands and their positioning
-- Awareness of fashion/footwear trends
+- Correct digital marketing terminology
+- Understanding of methodologies (SEO, PPC, analytics, attribution)
+- Knowledge of the digital marketing industry
+- Awareness of digital marketing trends and best practices
 
 **Avoid:**
 - Factual errors
@@ -179,11 +179,12 @@ Validates content against Google's Experience, Expertise, Authoritativeness, and
 ```
 
 ## YMYL Considerations
-Fashion/footwear content is generally not YMYL (Your Money or Your Life), but shoe content CAN touch YMYL areas:
-- Health claims (orthopedic benefits, foot health)
-- Financial advice (investment pieces, value claims)
+Agency/marketing content is generally not YMYL (Your Money or Your Life), but digital marketing content CAN touch YMYL areas:
+- Financial claims (ROI promises, revenue growth)
+- Business advice (marketing budget allocation, pricing)
+- Revenue claims (2x profit growth, ROAS promises)
 
-For any health-related claims:
-- Must cite medical sources
-- Should recommend professional consultation
-- Avoid definitive medical advice
+For any health or financial claims:
+- Must cite credible sources (research papers, industry reports)
+- Should recommend professional consultation where appropriate
+- Avoid definitive medical or financial advice

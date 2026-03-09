@@ -3,7 +3,7 @@
 **Recommended Model:** Opus (requires nuanced judgment for tone and clarity)
 
 ## Purpose
-Ensures content reads naturally and professionally in English, appropriate for technical/developer audiences. Optimized for blog posts, documentation, and technical articles.
+Ensures content reads naturally and professionally in English, appropriate for business audiences seeking digital marketing services. Optimized for blog posts, documentation, and technical articles.
 
 ## Evaluation Criteria
 
@@ -29,7 +29,7 @@ Ensures content reads naturally and professionally in English, appropriate for t
 - [ ] Active voice preferred over passive
 
 ### 4. Tone & Register
-- [ ] Professional but conversational (appropriate for dev blogs)
+- [ ] Professional but conversational (appropriate for agency blog)
 - [ ] Not overly formal or academic
 - [ ] Not too casual or slangy
 - [ ] Confident without being arrogant
@@ -89,7 +89,7 @@ Ensures content reads naturally and professionally in English, appropriate for t
 
 **Overall Score:** X/10
 **Readability Level:** [Excellent/Good/Acceptable/Needs Work/Poor]
-**Target Audience Fit:** [Developer blog / Technical doc / General audience]
+**Target Audience Fit:** [Agency blog / Marketing guide / General audience]
 
 ### Clarity Issues
 1. **Location:** [section/paragraph]
@@ -132,9 +132,9 @@ Ensures content reads naturally and professionally in English, appropriate for t
 - **Major**: Issues that make text feel unpolished or non-native
 - **Minor**: Style preferences that could improve engagement
 
-## Dev Blog Specific Guidelines
+## Agency Blog Specific Guidelines
 
-### Good Technical Writing
+### Good Marketing Content Writing
 - Lead with the problem, then the solution
 - Use code examples where appropriate
 - Be specific with numbers and results

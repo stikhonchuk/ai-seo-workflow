@@ -25,6 +25,11 @@ Thumbs.db
 # research/keywords/*.csv
 # research/analytics/
 
+content/
+
+# Client data (contains real company info — use client.example.md as template)
+.claude/client/client.md
+
 # Config with real values
 scripts/content_audit/config.py
 

@@ -3,7 +3,7 @@
 **Recommended Model:** Opus (requires deep linguistic understanding and nuanced judgment)
 
 ## Purpose
-Ensures content reads naturally to native Russian speakers, avoiding "translated" feel and maintaining appropriate register for e-commerce fashion content.
+Ensures content reads naturally to native Russian speakers, avoiding "translated" feel and maintaining appropriate register for digital marketing agency content.
 
 ## Evaluation Criteria
 
@@ -22,14 +22,14 @@ Ensures content reads naturally to native Russian speakers, avoiding "translated
 - [ ] No spelling errors (including ё vs е where meaningful)
 
 ### 3. Terminology
-- [ ] Fashion terminology is correct and current
+- [ ] Digital marketing terminology is correct and current
 - [ ] Consistent terminology throughout article
-- [ ] Brand names handled appropriately (transliteration where needed)
-- [ ] Technical shoe terms accurate
-- [ ] Size/measurement terms correct for Russian market
+- [ ] English marketing terms handled appropriately (SEO, PPC, ROAS, CPA kept in Latin or properly transliterated)
+- [ ] Digital marketing terms accurate
+- [ ] Business terminology correct for Russian market
 
 ### 4. Register & Tone
-- [ ] Appropriate formality level (вы vs ты - should be вы for e-commerce)
+- [ ] Appropriate formality level (вы vs ты - should be вы for professional agency content)
 - [ ] Professional but approachable tone
 - [ ] Not overly formal or stiff
 - [ ] Not too casual or colloquial

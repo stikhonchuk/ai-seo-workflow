@@ -5,6 +5,9 @@ description: Analyze Yandex Webmaster reports and generate insights
 
 # Analyze Webmaster
 
+**Recommended Model: Sonnet** — analytical data processing and opportunity identification.
+**Workflow Position:** Monthly Close Cycle, Step 2 → See SEO_WORKFLOW.md#monthly-close-cycle
+
 When this skill is invoked:
 
 1. Determine report date:

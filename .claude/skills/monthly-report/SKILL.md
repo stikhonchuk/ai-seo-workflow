@@ -5,6 +5,9 @@ description: Generate monthly SEO performance report
 
 # Monthly Report
 
+**Recommended Model: Sonnet** — structured analytical reporting.
+**Workflow Position:** Monthly Close Cycle, Step 3 → See SEO_WORKFLOW.md#monthly-close-cycle
+
 When this skill is invoked:
 
 1. Determine the month to report on:

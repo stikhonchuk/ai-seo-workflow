@@ -3,25 +3,28 @@
 **Recommended Model:** Sonnet (moderate complexity, structured analysis)
 
 ## Purpose
-Validates technical SEO compliance for Russian-language content targeting Yandex and Google.
+Validates technical SEO compliance for bilingual content.
+→ See `client.md#domains` for sites and target search engines.
+→ See `client.md#site-structure` for valid page patterns and internal link targets.
 
 ## Context Files to Reference
 Before evaluating, load relevant context from these files:
 
-1. **Keyword Research:** `research/keywords/SEO_GAPS_ANALYSIS.md`
-   - Target keywords and search volumes
-   - Competitor keyword coverage
-   - Content gaps identified
+1. **Priority Keywords:** `research/keywords/priority-keywords.md`
+   - Target keywords and search volumes (EN + RU)
+   - Keyword mapping to pages
+   - Content priority matrix
 
-2. **Current Rankings:** `research/keywords/seo_wizard_export.tsv`
-   - Existing keyword positions
-   - Impressions and clicks data
+2. **Seed Keywords:** `research/keywords/seed-keywords.md`
+   - Full keyword list by segment
+   - Keywords by intent
 
-3. **Site Structure:** `research/competitors/COMPETITIVE_SUMMARY.md`
-   - Internal linking benchmarks
-   - Competitor content patterns
+3. **Competitor Analysis:** `research/competitors/competitor-analysis.md`
+   - 13 competitor profiles
+   - Competitive advantages
+   - Content gap opportunities
 
-4. **Content Calendar:** `content/calendars/JANUARY_2026_CONTENT_CALENDAR.md` (or current month)
+4. **Content Calendar:** `content/calendars/` (current month)
    - Planned internal link targets (blog articles)
    - Related content pieces
 
@@ -30,7 +33,7 @@ Use this context to:
 - Suggest internal links to existing high-performing pages
 - Compare word count to competitor benchmarks
 - Identify linking opportunities to upcoming content
-- **Validate all internal links against content calendar and known collections**
+- **Validate all internal links against content calendar and known site pages**
 
 ## Evaluation Criteria
 
@@ -63,14 +66,14 @@ Use this context to:
 
 ### 5. Internal Linking
 - [ ] Minimum 3-5 internal links per 1000 words
-- [ ] Links to relevant category pages
+- [ ] Links to relevant service pages
 - [ ] Links to related blog articles
-- [ ] Links to product pages where appropriate
+- [ ] Links to landing pages where appropriate
 - [ ] Varied anchor text (not all exact match)
 - [ ] **All internal links are valid** - must be either:
   - Existing in sitemap.xml
   - Planned in current month's content calendar
-  - Valid collection/product pages on the site
+  - Valid service/blog pages on the site
 - [ ] No broken or placeholder links
 
 ### 6. Schema Markup
@@ -82,7 +85,7 @@ Use this context to:
 ### 7. Technical Elements
 - [ ] Images have descriptive alt text with keywords
 - [ ] Image file names are descriptive
-- [ ] No broken internal links (verify against sitemap or calendar)
+- [ ] No broken internal links (verify against sitemap, calendar, or known pages)
 - [ ] Proper canonical tag
 
 ## Output Format
@@ -117,21 +120,21 @@ Use this context to:
 
 ### Internal Links
 - Total links: X
-- Category links: X
-- Product links: X
+- Service page links: X
+- Landing page links: X
 - Blog links: X
 
 ### Link Validation
-**Validation Method:** Hybrid approach (calendar + known collections)
+**Validation Method:** Hybrid approach (calendar + known pages)
 
 **Link Status:**
-- ✅ Valid links: X (confirmed in calendar or known collections)
+- ✅ Valid links: X (confirmed in calendar or known pages)
 - ⚠️ Planned links: X (in calendar but not published yet)
 - ⚠️ Need verification: X (uncommon patterns)
 - ❌ Broken links: X (not found anywhere)
 
 **Details:**
-1. [Link URL] → Status: [✅ Valid in calendar | ✅ Known collection | ⚠️ Planned | ❌ Broken]
+1. [Link URL] → Status: [✅ Valid in calendar | ✅ Known page | ⚠️ Planned | ❌ Broken]
    - Note: [why flagged if not valid]
 
 ### Recommendations (Priority Order)
@@ -148,56 +151,63 @@ Use this **hybrid approach** for efficient validation:
 
 For each internal link found in the article, classify it:
 
-#### A. Blog Article Links (`/blogs/blog/*`)
-- Extract slug from URL (e.g., `/blogs/blog/chto-takoe-lofery-gid`)
+#### A. Blog Article Links (`/blog/*`)
+- Extract slug from URL (e.g., `/blog/seo/technical-seo-guide`)
 - Check current month's content calendar for matching `target_url`
-- ✅ **Valid** if found in calendar
-- ❌ **Broken** if not in calendar (typo or doesn't exist)
+- Check existing sitemap for published articles
+- ✅ **Valid** if found in calendar or sitemap
+- ❌ **Broken** if not found anywhere (typo or doesn't exist)
 
-#### B. Collection/Product Pages (`/collection/*`)
-Match against known valid collections:
-- `/collection/zhenskie-lofery/` - Women's loafers
-- `/collection/muzhskie-lofery/` - Men's loafers
-- `/collection/premiata/` - Premiata brand
-- `/collection/baldinini/` - Baldinini brand
-- `/collection/doucals/` - Doucal's brand
-- `/collection/muzhskie-botinki/` - Men's boots/shoes
-- `/collection/zhenskie-botinki/` - Women's boots/shoes
+#### B. Service Pages
+Match against known valid pages:
+- `/services/seo - SEO services
+- `/services/advertising - Internet advertising
+- `/services/analytics - Web analytics
+- `/services/development - Web development
+- `/services/smm - Social media marketing
+- `/pricing` - Pricing page
+- `/services/email - Email marketing
+- `/services/ecommerce - E-commerce
+- `/services/strategy - Digital strategy
+- `/cases - Case studies
 
 ✅ **Valid** if matches known pattern
-⚠️ **Needs verification** if new collection name (flag for manual check)
+⚠️ **Needs verification** if new page path (flag for manual check)
 
 #### C. External Links
-- Any link starting with `http://` or `https://` that's not [YOUR-DOMAIN] domain
+- Any link starting with `http://` or `https://` that's not → See client.md#domains
 - ⚠️ **Flag for review** - should be minimal in content articles
 
 ### Step 2: Report Link Status
 
 Group findings:
-- ✅ **Valid links** - Confirmed in calendar or known collections
+- ✅ **Valid links** - Confirmed in calendar or known pages
 - ⚠️ **Planned links** - In content calendar but not published yet
 - ❌ **Broken links** - Not found anywhere
 - ⚠️ **Verify** - Uncommon patterns that need manual checking
 
-### Step 3: Known Collection List Maintenance
+### Step 3: Known Page List Maintenance
 
-**Update this list** when new collections are added to the site:
+**Update this list** when new pages are added to the site:
 ```
-Valid Collection Patterns:
-/collection/zhenskie-lofery/
-/collection/muzhskie-lofery/
-/collection/premiata/
-/collection/baldinini/
-/collection/doucals/
-/collection/muzhskie-botinki/
-/collection/zhenskie-botinki/
-/collection/[brand-name]/  (for known brands)
+Valid Page Patterns:
+/services/seo
+/services/advertising
+/services/analytics
+/services/development
+/features
+/pricing
+/services/smm
+/services/email
+/services/ecommerce
+/services/strategy
+/cases
 ```
 
 ### Critical Rules:
 1. **No broken links** - Every internal link must be validated
-2. **Blog links** must exist in content calendar (current or previous months)
-3. **Collection links** must match known patterns
+2. **Blog links** must exist in content calendar (current or previous months) or sitemap
+3. **Service page links** must match known page patterns
 4. **Flag unknowns** for manual verification rather than auto-failing
 
 ---

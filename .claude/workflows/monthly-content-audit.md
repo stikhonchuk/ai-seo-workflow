@@ -7,11 +7,20 @@
 ## Команда
 
 ```bash
-cd /home/serge/Sites/[YOUR-PROJECT]
-venv/bin/python scripts/content_audit/main.py --full
+cd [PROJECT-ROOT]
+
+# Both sites
+venv/bin/python scripts/content_audit/main.py --full --all
+
+# Single site
+venv/bin/python scripts/content_audit/main.py --full --domain [your-domain.com]
+venv/bin/python scripts/content_audit/main.py --full --domain [your-domain.ru]
+
+# Ignore cache
+venv/bin/python scripts/content_audit/main.py --full --all --force-refresh
 ```
 
-⏱️ Время: ~10 минут для 585 страниц
+⏱️ Время: ~5 минут для 17 страниц на сайт
 
 ## Что произойдёт
 
@@ -25,11 +34,18 @@ venv/bin/python scripts/content_audit/main.py --full
 
 ```
 research/content-audit/
-├── site-content-audit-2026-01-31.csv   ← Датированный отчёт (архивируется)
-├── site-content-audit-latest.csv       ← Symlink на последний (использовать)
-├── content-gaps-2026-01-31.md          ← Датированный анализ
-├── content-gaps-latest.md              ← Symlink на последний
-└── audit-log.txt                       ← Лог выполнения
+├── [domain-1]/                      ← Отчёты для [your-domain.com]
+│   ├── site-content-audit-2026-01-31.csv
+│   ├── site-content-audit-latest.csv   ← Symlink на последний
+│   ├── content-gaps-2026-01-31.md
+│   ├── content-gaps-latest.md          ← Symlink на последний
+│   └── audit-log.txt
+├── [domain-2]/                       ← Отчёты для [your-domain.ru]
+│   ├── site-content-audit-2026-01-31.csv
+│   ├── site-content-audit-latest.csv
+│   ├── content-gaps-2026-01-31.md
+│   ├── content-gaps-latest.md
+│   └── audit-log.txt
 ```
 
 **Примечание:** Используйте файлы `*-latest.*` для работы - они всегда указывают на самый свежий отчёт. Датированные файлы сохраняются для истории.
@@ -68,11 +84,11 @@ research/content-audit/
 
 **Пример:**
 ```bash
-# Найти все статьи про лоферы
-grep -i "лоферы" research/content-audit/site-content-audit.csv
+# Найти все статьи про SEO (EN site)
+grep -i "seo" research/content-audit/[domain-1]/site-content-audit-latest.csv
 
-# Найти статьи про Premiata
-grep -i "premiata" research/content-audit/site-content-audit.csv
+# Найти статьи про целеполагание (RU site)
+grep -i "целеполагание" research/content-audit/[domain-2]/site-content-audit-latest.csv
 ```
 
 ### 3. Для выявления content gaps
@@ -95,7 +111,7 @@ cat research/content-audit/site-content-audit.json | grep -A 10 "summary"
 Если нужно обновить только метрики без повторного скрейпинга:
 
 ```bash
-venv/bin/python scripts/content_audit/main.py --update-webmaster
+venv/bin/python scripts/content_audit/main.py --update-webmaster --all
 ```
 
 ⏱️ Время: ~30 секунд (использует кэш страниц)
@@ -104,9 +120,10 @@ venv/bin/python scripts/content_audit/main.py --update-webmaster
 
 | Режим | Когда | Зачем |
 |-------|-------|-------|
-| `--full` | Конец месяца | Monthly report + планирование |
-| `--update-webmaster` | Середина месяца (опц.) | Обновить только GSC метрики |
-| `--sitemap-only` | По необходимости | Быстрый просмотр структуры |
+| `--full --all` | Конец месяца | Monthly report + планирование (оба сайта) |
+| `--full --domain [your-domain.com]` | По необходимости | Аудит одного сайта |
+| `--update-webmaster --all` | Середина месяца (опц.) | Обновить только GSC метрики |
+| `--sitemap-only --all` | По необходимости | Быстрый просмотр структуры |
 
 ## Интеграция с Monthly Report Skill
 
@@ -130,15 +147,12 @@ chmod +x scripts/content_audit/main.py
 ```
 
 **Слишком медленно:**
-- Нормально: ~10 минут для 585 страниц
+- Нормально: ~5 минут для 17 страниц на сайт
 - Delay 0.5 сек между запросами (вежливость к серверу)
-- Используйте `--update-webmaster` для быстрого обновления GSC
+- Используйте `--update-webmaster --all` для быстрого обновления GSC
 
 ## Хранение результатов
 
-- Все отчёты перезаписываются при каждом запуске
-- Если нужна история - сохраните CSV с датой:
-  ```bash
-  cp research/content-audit/site-content-audit.csv \
-     research/content-audit/archive/audit-2026-01-31.csv
-  ```
+- Датированные отчёты сохраняются автоматически в per-site директориях
+- Symlinks `*-latest.*` всегда указывают на самый свежий отчёт
+- Для сравнения между сайтами используйте `--all` и смотрите оба каталога

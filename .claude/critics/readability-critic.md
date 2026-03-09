@@ -38,7 +38,7 @@ Evaluates content accessibility, scannability, and ease of reading for the targe
 ### 5. Vocabulary Level
 - [ ] Industry terms explained on first use
 - [ ] No unnecessary jargon
-- [ ] Appropriate for target audience (fashion consumers)
+- [ ] Appropriate for target audience (business owners and marketing managers)
 - [ ] Consistent terminology
 - [ ] No overly academic language
 
@@ -93,7 +93,7 @@ Evaluates content accessibility, scannability, and ease of reading for the targe
 
 ### Passive Constructions
 - Russian uses passive more than English
-- Prefer active for engagement: "Лоферы отлично сочетаются..." vs "Лоферы могут быть сочетаемы..."
+- Prefer active for engagement: "[YOUR-BRAND] помогает бизнесу..." vs "Результаты могут быть измерены..."
 
 ## Output Format
 

@@ -3,7 +3,10 @@ name: analyze-gsc
 description: Analyze Google Search Console query trend reports
 ---
 
-# Analyze Gsc
+# Analyze GSC
+
+**Recommended Model: Sonnet** — analytical data processing and trend identification.
+**Workflow Position:** Monthly Close Cycle, Step 2 → See SEO_WORKFLOW.md#monthly-close-cycle
 
 When this skill is invoked:
 
@@ -15,7 +18,7 @@ When this skill is invoked:
 2. Locate GSC files in research/webmasters/:
    - Search for *.csv.gz files with query trend data
    - These files contain: Query column + 7 daily impression columns
-   - File format: www.[YOUR-DOMAIN]_[ID].csv.gz
+   - File format: www.[YOUR-BRAND]_[ID].csv.gz
    - If file not found, ask user to export from Google Search Console
 
 3. Extract and process data:
@@ -32,18 +35,18 @@ When this skill is invoked:
    - Daily impression trends per query
 
 5. Categorize queries:
-   - Brand queries (Premiata, Baldinini, Hogan, Hotto, Bagatto, etc.)
-   - Size conversion queries (размер, см, итальянский, стелька)
-   - Product queries (кроссовки, обувь, куртка, джинсы)
-   - Informational queries (что за бренд, история, описание)
-   - Navigational queries (brand names only)
+   - SEO queries (seo, продвижение сайта, поисковая оптимизация)
+   - Advertising queries (контекстная реклама, ppc, google ads, яндекс директ)
+   - Analytics queries (аналитика, google analytics, яндекс метрика)
+   - Digital strategy queries (digital strategy, интернет-маркетинг)
+   - Navigational queries ([your-brand], brand name)
 
 6. Identify trends and patterns:
    - Queries with increasing daily impressions
    - Queries with decreasing trends
    - Spike queries (sudden high impressions)
    - Consistent performers
-   - Seasonal patterns (jacket queries in cold weather, etc.)
+   - Seasonal patterns (Q1 planning in Jan, budget reviews, etc.)
 
 7. Compare with Yandex data (if available):
    - Which queries perform better on Google vs Yandex?

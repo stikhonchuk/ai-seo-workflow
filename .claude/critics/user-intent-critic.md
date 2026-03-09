@@ -33,14 +33,14 @@ First, classify the primary keyword's intent:
 - [ ] Clear recommendation criteria
 - [ ] Price ranges mentioned
 - [ ] Use cases matched to products
-- [ ] Buying guide elements included
+- [ ] Decision-making criteria included
 
 #### For Transactional Intent
 - [ ] Clear path to purchase (CTAs)
 - [ ] Price/availability information
-- [ ] Trust signals (shipping, returns)
-- [ ] Product specifications
-- [ ] Social proof (reviews, ratings)
+- [ ] Trust signals (case studies, team expertise, client results)
+- [ ] Feature details and capabilities
+- [ ] Social proof (customer stories, usage stats)
 
 ### 3. Information Architecture
 - [ ] Most important info appears first (inverted pyramid)
@@ -63,45 +63,45 @@ First, classify the primary keyword's intent:
 
 ## Content Type Expectations
 
-### "Что такое [X]" (What is X) Articles
+### Methodology Explainer ("What is X" / "Что такое X")
 **Must Have:**
 1. Clear definition in first paragraph
-2. Historical context/origin
-3. Types/categories breakdown
-4. Visual examples
+2. Historical context/origin (who created it, when)
+3. Types/variations breakdown
+4. Visual examples or diagrams
 5. Practical applications
-6. How to identify/recognize
+6. Step-by-step implementation guide
 7. Common misconceptions addressed
 
 **Nice to Have:**
-- Comparison with similar items
-- Care/maintenance tips
-- Buying recommendations
+- Comparison with similar frameworks (SEO vs PPC vs content marketing)
+- How [YOUR-BRAND] implements this approach
+- Templates, checklists, or downloadable resources
 
-### Buying Guides / "Лучшие [X]"
+### Comparison Articles ("Best X" / "X vs Y")
 **Must Have:**
-1. Clear selection criteria
-2. Top picks with reasoning
-3. Price tiers covered
-4. Use case matching
-5. Comparison elements
-6. Where to buy
+1. Clear comparison criteria
+2. Feature-by-feature comparison table
+3. Pros and cons for each option
+4. Pricing tiers covered
+5. Use case matching (who should use what)
+6. Clear verdict/recommendation
 
-### Size Guides
+### How-To Tutorials
 **Must Have:**
-1. Conversion charts
-2. How to measure
-3. Brand-specific notes
-4. Fit recommendations
-5. Common issues addressed
+1. Prerequisites listed
+2. Step-by-step instructions
+3. Screenshots or examples at each step
+4. Common mistakes to avoid
+5. Expected results
 
-### Category Pages
+### Use Case Guides
 **Must Have:**
-1. Category description
-2. Filtering options explained
-3. Product highlights
-4. Buying considerations
-5. Related categories linked
+1. Problem/pain point clearly stated
+2. Solution approach explained
+3. How [YOUR-BRAND] helps (natural, not forced)
+4. Real-world examples or scenarios
+5. Next steps and CTAs
 
 ## Output Format
 
@@ -166,7 +166,7 @@ Compared to top 3 ranking pages:
 
 ## Intent Red Flags
 - Article about "what is X" that doesn't define X in first paragraph
-- Buying guide that doesn't compare options
-- Size guide without conversion chart
+- Comparison article that doesn't compare options fairly
+- How-to guide without step-by-step instructions
 - Long intro before answering the core question
-- Commercial page without trust signals
+- Commercial page without trust signals (free consultation, data security)

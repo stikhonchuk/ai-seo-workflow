@@ -3,7 +3,10 @@
 **Recommended Model:** Haiku (checklist evaluation, CTA counting, link inventory)
 
 ## Purpose
-Evaluates how effectively content drives commercial goals while maintaining user value. Ensures product integration feels natural, not forced.
+Evaluates how effectively content drives commercial goals while maintaining user value. Ensures service mentions and CTAs feel natural, not forced.
+→ See `client.md#ctas` for approved CTA language (EN + RU).
+→ See `client.md#trust-signals` for trust elements to check.
+→ See `client.md#competitive-advantages` for USPs to validate.
 
 ## Evaluation Criteria
 
@@ -14,39 +17,39 @@ Evaluates how effectively content drives commercial goals while maintaining user
 - [ ] Multiple CTAs for long content (not excessive)
 - [ ] CTAs match content type and user intent
 
-### 2. Product Integration
-- [ ] Products mentioned where contextually relevant
-- [ ] Product mentions feel helpful, not pushy
-- [ ] Features/benefits explained (not just listed)
-- [ ] Multiple products for choice (where appropriate)
-- [ ] Clear path from content to product pages
+### 2. Feature Integration
+- [ ] Client features mentioned where contextually relevant
+- [ ] Feature mentions feel helpful, not pushy
+- [ ] Benefits explained in context of user's problem (not just listed)
+- [ ] Relevant features for the article's target segment (Small Business/E-commerce/Startup/Enterprise)
+- [ ] Clear path from content to service pages or consultation request
 
 ### 3. Internal Linking Strategy
-- [ ] Links to relevant category pages
-- [ ] Links to specific product pages
-- [ ] Links to related educational content
+- [ ] Links to relevant service pages
+- [ ] Links to segment landing pages (seo/advertising/analytics/strategy)
+- [ ] Links to related educational content (blog articles)
 - [ ] Anchor text is descriptive and varied
 - [ ] Link density appropriate (not spammy)
 
 ### 4. Trust Signals
-- [ ] Shipping/delivery information mentioned
-- [ ] Return policy referenced
-- [ ] Authenticity guarantees (for luxury brands)
-- [ ] Customer service accessibility
-- [ ] Payment security (where relevant)
+- [ ] Free consultation / audit offer mentioned
+- [ ] Data security and privacy referenced
+- [ ] Customer support accessibility
+- [ ] Integration capabilities (if relevant)
+- [ ] Social proof (customer stories, team size, usage stats)
 
 ### 5. Value Proposition
-- [ ] Why buy from [YOUR-DOMAIN] is clear
-- [ ] Unique selling points highlighted
-- [ ] Price positioning addressed
-- [ ] Quality/authenticity emphasized
-- [ ] Convenience factors mentioned
+- [ ] Why use this service is clear
+- [ ] Unique selling points highlighted (full-service agency covering SEO, ads, analytics, and strategy)
+- [ ] Free consultation positioning addressed
+- [ ] Ease of use emphasized
+- [ ] Full-service flexibility mentioned
 
 ### 6. Conversion Path
 - [ ] Clear next steps for reader
 - [ ] No dead ends in content
-- [ ] Related products suggested
-- [ ] Category exploration encouraged
+- [ ] Related features or use cases suggested
+- [ ] Free consultation encouraged at natural decision points
 - [ ] Newsletter/account signup opportunity
 
 ## CTA Guidelines
@@ -54,11 +57,11 @@ Evaluates how effectively content drives commercial goals while maintaining user
 ### CTA Types by Content
 | Content Type | Primary CTA | Secondary CTAs |
 |--------------|-------------|----------------|
-| Educational ("что такое") | Browse [category] | Related articles |
-| Buying Guide | Shop featured products | Size guide, Compare |
-| Size Guide | Shop [brand] | Related sizes, Returns |
-| Category Page | Filter/Shop now | Brand pages, Guides |
-| Brand Page | Shop collection | Size guide, New arrivals |
+| How-To Guide | Get Free Consultation | Service pages |
+| Comparison Article | Start Free Consultation | Feature pages, Demo |
+| How-To Tutorial | Request Free Audit | Related guides |
+| Case Study | Get Free Audit | Service pages |
+| Tool Review | Download Free Checklist | Related resources |
 
 ### CTA Placement Rules
 1. **After value delivery**: Place CTAs after providing useful information
@@ -67,34 +70,41 @@ Evaluates how effectively content drives commercial goals while maintaining user
 4. **Not too early**: First CTA after 200+ words minimum
 5. **Not too frequent**: Maximum 1 CTA per 500 words
 
-### CTA Language (Russian)
-**Strong CTAs:**
-- "Выбрать лоферы" (Choose loafers)
-- "Смотреть коллекцию" (View collection)
-- "Подобрать размер" (Find your size)
-- "Перейти в каталог" (Go to catalog)
+### CTA Language
+
+**Strong CTAs (English):**
+- → See client.md#ctas for specific CTA text
+- "Request Free Audit"
+- "See Our Case Studies"
+- "View Our Results"
+
+**Strong CTAs (Russian):**
+- → See client.md#ctas (→ See client.md#ctas)
+- "→ See client.md#ctas (Request free consultation))
+- "Узнать стоимость (Get pricing))
+- "Смотреть кейсы (View case studies))
 
 **Avoid:**
-- "Купить сейчас" too early (feels pushy)
-- "Нажмите здесь" (vague, no value)
+- "Buy now" / "Купить сейчас" (too aggressive for agency services)
+- "Click here" / "Нажмите здесь" (vague, no value)
 - Too many exclamation marks
 
-## Product Mention Guidelines
+## Feature Mention Guidelines
 
 ### Natural Integration Examples
 **Good:**
-> "Классические penny loafers, такие как модели от Premiata, идеально подходят для офисного стиля."
-> [Link to Premiata loafers]
+> "When your business runs multi-channel campaigns, alignment between SEO, advertising, and content becomes critical. The client's integrated marketing approach lets you coordinate campaigns across channels, ensuring everyone moves in the same direction."
+> [Link to integrated marketing approach]
 
 **Bad:**
-> "Купите лоферы в [YOUR-DOMAIN]! У нас лучшие цены!"
+> "Sign up for the client now! We have the best digital marketing agency!"
 
-### Product Mention Frequency
-| Article Length | Product Mentions | Product Links |
+### Feature Mention Frequency
+| Article Length | Feature Mentions | Internal Links |
 |----------------|------------------|---------------|
-| 1000-1500 words | 2-4 | 3-5 |
-| 1500-2500 words | 4-6 | 5-8 |
-| 2500+ words | 6-10 | 8-12 |
+| 1000-1500 words | 2-3 | 3-5 |
+| 1500-2500 words | 3-5 | 5-8 |
+| 2500+ words | 5-7 | 8-12 |
 
 ## Output Format
 
@@ -155,11 +165,11 @@ Evaluates how effectively content drives commercial goals while maintaining user
 
 ### Trust Signals
 **Present:**
-- [ ] Shipping info: [Yes/No]
-- [ ] Returns policy: [Yes/No]
-- [ ] Authenticity: [Yes/No]
-- [ ] Customer service: [Yes/No]
-- [ ] Social proof: [Yes/No]
+- [ ] Free consultation / audit offer mentioned: [Yes/No]
+- [ ] Data security / privacy referenced: [Yes/No]
+- [ ] Uptime / reliability mentioned: [Yes/No]
+- [ ] Customer support accessibility: [Yes/No]
+- [ ] Social proof (ratings, user counts, testimonials): [Yes/No]
 
 **Missing Trust Signals:**
 1. [Signal] should be added in [location] because [reason]
@@ -178,7 +188,7 @@ Evaluates how effectively content drives commercial goals while maintaining user
 ### Conversion Path
 **User Journey:**
 ```
-[Content] → [CTA 1] → [Next page] → [CTA 2] → [Conversion]
+[Content] → [CTA: Free Consultation] → [Signup] → [Onboarding] → [Active Use] → [Upgrade]
 ```
 
 **Path Issues:**
@@ -199,10 +209,10 @@ Evaluates how effectively content drives commercial goals while maintaining user
 ```
 
 ## Balance Guidelines
-The goal is **helpful commerce** - content that genuinely helps users while naturally leading to purchase. Avoid:
+The goal is **helpful commerce** - content that genuinely helps users while naturally leading to consultation request. Avoid:
 - Pure sales content disguised as editorial
-- Excessive product pushing
+- Excessive feature pushing
 - Interrupting user's information seeking
 - Manipulative urgency tactics
 
-Remember: Trust builds conversions. Pushy content loses customers.
+Remember: Trust builds conversions. Pushy content loses potential users.

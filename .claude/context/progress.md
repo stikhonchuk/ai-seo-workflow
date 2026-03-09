@@ -1,10 +1,13 @@
-# Progress Tracking: [YOUR-PROJECT] SEO Project
+# Progress Tracking
 
 ## Project Timeline
 
 **Project Start:** [DATE]
 **Target Completion:** [DATE] (12 months recommended)
-**Current Phase:** Planning & Setup
+**Current Phase:** Phase 1 — Website Analysis & Audit
+
+→ See [SEO_WORKFLOW.md](../workflows/SEO_WORKFLOW.md) for phase details.
+→ See [client.md](../client/client.md) for project goals and milestones.
 
 ---
 
@@ -12,170 +15,100 @@
 
 ### Phase 1: Website Analysis & Audit
 **Status:** Not Started
-**Target Completion:** [DATE]
+**Target:** [DATE + 1 week]
 
-- [ ] Analyze existing website structure
-- [ ] Review current product categories
-- [ ] Identify existing content assets
-- [ ] Check current SEO implementation
+- [ ] Configure client.md with project data
+- [ ] Run content audit on existing site(s)
+- [ ] Analyze current content assets and SEO state
+- [ ] Check schema markup, meta tags, headings
 - [ ] Analyze site speed and technical SEO
-- [ ] Review mobile responsiveness
+- [ ] Document baseline metrics
 
 ### Phase 2: Keyword Research
 **Status:** Not Started
-**Target Completion:** [DATE]
+**Target:** [DATE + 2 weeks]
 
-- [ ] Collect seed keywords (100+)
-- [ ] Use keyword research tools
-- [ ] Analyze search volume and difficulty
+- [ ] Collect seed keywords by content pillar
+- [ ] Use keyword research tools (Google Keyword Planner, Yandex Wordstat)
+- [ ] Run `scripts/process_keywords.py` on exports
 - [ ] Categorize by search intent
 - [ ] Prioritize top 50 keywords
-- [ ] Create keyword mapping spreadsheet
+- [ ] Create keyword mapping to pages
 
 ### Phase 3: Competitor Analysis
 **Status:** Not Started
-**Target Completion:** [DATE]
+**Target:** [DATE + 2 weeks]
 
-- [ ] Identify 3-5 main competitors
-- [ ] Research competitor keywords
+- [ ] Identify competing sites
+- [ ] Research competitor keywords and content
 - [ ] Analyze competitor content strategies
-- [ ] Identify content gaps
-- [ ] Document opportunities
+- [ ] Identify content gaps and opportunities
 
 ### Phase 4: Content Strategy & Publication Plan
 **Status:** Not Started
-**Target Completion:** [DATE]
+**Target:** [DATE + 3 weeks]
 
-- [ ] Define content pillars
-- [ ] Identify content types
-- [ ] Create content calendar template
-- [ ] Customize based on keyword research
+- [ ] Define content calendar using priority keywords
 - [ ] Create first month content briefs
-- [ ] Set publication schedule
+- [ ] Set publication schedule per client.md
 
-### Phase 5: Content Creation Guidelines
-**Status:** Not Started
-**Target Completion:** [DATE]
-
-- [ ] Create buying guide template
-- [ ] Create how-to guide template
-- [ ] Create product page template
-- [ ] Create category page template
-- [ ] Document SEO writing best practices
-- [ ] Create pre-publishing checklist
-
-### Phase 6: Content Optimization & Publishing
+### Phase 5: Content Creation
 **Status:** Not Started
 **Target:** Ongoing
 
-- [ ] Write first article
+- [ ] Write first article using `/writing-guide`
+- [ ] Run `/review-article` — achieve score ≥7
 - [ ] Publish first article
-- [ ] Establish 2x/week publishing rhythm
-- [ ] Track published content
+- [ ] Establish regular publishing rhythm
 
-### Phase 7: Monitoring & Improvement
+### Phase 6: Review & Publish
 **Status:** Not Started
 **Target:** Ongoing
 
-- [ ] Set up rank tracking for 50 keywords
-- [ ] Monitor organic traffic growth
-- [ ] Track engagement metrics
-- [ ] Review content performance monthly
-- [ ] Update underperforming content
-
-### Phase 8: Link Building Strategy
+### Phase 7: Social Media Amplification
 **Status:** Not Started
-**Target Completion:** Month 3+
+**Target:** Ongoing
 
-- [ ] Develop internal linking strategy
-- [ ] Identify link building opportunities
-- [ ] Begin outreach for guest posts
-- [ ] Track backlink growth
+### Phase 8: Link Building
+**Status:** Not Started
+**Target:** Month 3+
 
 ---
 
 ## Content Production Progress
 
-### Monthly Content Goals
-
 | Month | Goal | Status | Published |
 |-------|------|--------|-----------|
-| Month 1 | Setup + 8-10 articles | Not Started | 0 |
-| Month 2 | 8-10 articles | Not Started | 0 |
-| Month 3 | 8-10 articles | Not Started | 0 |
-
-### Cumulative Progress
-- **Target for 12 months:** 100+ articles
-- **Current total:** 0 articles
-- **Progress:** 0%
+| Month 1 | Setup + first articles | Not Started | 0 |
+| Month 2 | Regular cadence | Not Started | 0 |
+| Month 3 | Full production | Not Started | 0 |
 
 ---
 
 ## Technical SEO Progress
 
-### Analytics & Tracking Setup
-- [ ] Google Analytics 4 installed
-- [ ] Google Search Console set up
-- [ ] Yandex Metrica installed (if targeting Russia)
-- [ ] Yandex Webmaster set up (if targeting Russia)
+- [ ] Analytics configured (GA4 / Yandex Metrica)
+- [ ] Search Console set up (Google / Yandex)
 - [ ] XML sitemap submitted
-- [ ] Rank tracking system established
-
-### On-Page Optimization
-- [ ] Product page template optimized
-- [ ] Category page template optimized
 - [ ] Schema markup implemented
-- [ ] Mobile optimization verified
-- [ ] Page speed optimized (<3 seconds)
+- [ ] Page speed optimized
 
 ---
 
 ## Weekly Progress Log
 
-### Week of [DATE]
-**Completed:**
-- *List completed items*
-
-**In Progress:**
-- *List in-progress items*
-
-**Blockers:**
-- *List any blockers*
+*Add weekly entries as you work.*
 
 ---
 
-## Milestone Tracker
-
-### Month 1-3 Milestones (Foundation)
-
-| Milestone | Target Date | Status |
-|-----------|-------------|--------|
-| Website audit complete | | ⏳ Pending |
-| Keyword research complete | | ⏳ Pending |
-| Competitor analysis complete | | ⏳ Pending |
-| First article published | | ⏳ Pending |
-| 20 articles published | | ⏳ Pending |
-
-### Month 4-6 Milestones (Growth)
-
-| Milestone | Target Date | Status |
-|-----------|-------------|--------|
-| 50+ pages published | | ⏳ Pending |
-| Ranking top 20 for 30+ keywords | | ⏳ Pending |
-| 30-50% traffic increase | | ⏳ Pending |
-
----
-
-## Quick Stats Dashboard
+## Quick Stats
 
 **Project Age:** 0 days
+**Total Articles Written:** 0
 **Total Articles Published:** 0
-**Total Keywords Researched:** 0
-**Competitors Analyzed:** 0
-**Current Phase:** Setup
+**Current Phase:** 1 (Setup)
 **Overall Progress:** 0%
 
 ---
 
 **Last Updated:** [DATE]
-**Next Update:** [DATE]

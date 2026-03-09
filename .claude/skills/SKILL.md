@@ -1,102 +1,91 @@
 ---
 name: skills
-description: Overview of all available custom skills for [YOUR-DOMAIN] SEO project
+description: Overview of all available custom skills for the SEO project
 user-invocable: false
 ---
 
-# Custom Skills for [YOUR-DOMAIN] SEO Project
+# Custom Skills — SEO Project
 
-This directory contains custom Claude Code skills that automate common workflows for the [YOUR-DOMAIN] SEO project.
+All skills reference `client.md` for client-specific data and are reusable across clients.
 
-## Available Skills
+## Skills by Workflow Phase
 
 ### Session Management
+| Skill | Model | Usage |
+|-------|-------|-------|
+| `/start-session` | — | Load context, show current phase and next actions |
+| `/end-session` | — | Save progress, workflow compliance check, retrospective, commit |
 
-**start-session** - Load project context at session start
-- Reads: active-context.md, progress.md, memory-bank.md
-- Provides status summary with priorities, completions, blockers
-- Usage: `/start-session`
+### Phase 1: Audit + Phase 4: Strategy
+| Skill | Model | Usage |
+|-------|-------|-------|
+| `/brainstorm` | **Opus** | Structured ideation for content strategy |
+| `/brainstorm "topic"` | **Opus** | Start with seed idea |
+| `/brainstorm --resume` | **Opus** | Continue previous session |
 
-**end-session** - Save progress and commit at session end
-- Updates progress.md and active-context.md
-- Commits all changes to git with detailed message
-- Provides session summary
-- Usage: `/end-session`
+### Phase 5: Content Creation
+| Skill | Model | Usage |
+|-------|-------|-------|
+| `/writing-guide` | **Sonnet** | Load writing standards and templates |
+| `/writing-guide [type]` | **Sonnet** | Load for specific content type |
+| `/writing-guide --checklist` | **Sonnet** | Show pre-publishing checklist only |
 
-### Reporting & Analysis
+### Phase 6: Review & Publish
+| Skill | Model | Usage |
+|-------|-------|-------|
+| `/review-article` | **Multi** | Full 8-critic review (Haiku → Sonnet → Opus) |
+| `/review-article [file]` | **Multi** | Review specific file |
+| `/review-article --critic=seo` | **Sonnet** | Single critic review |
+| `/review-article --quick` | **Haiku** | Quick scoring, all critics |
 
-**monthly-report** - Generate monthly SEO performance report structure
-- Creates report template from REPORT_TEMPLATE.md
-- Sets up data snapshot directory
-- Provides checklist for data collection
-- Usage: `/monthly-report` or `/monthly-report 2026-02`
+### Phase 7: Social Media Amplification
+| Skill | Model | Usage |
+|-------|-------|-------|
+| `/create-social-posts` | **Sonnet** | Generate posts for all channels |
+| `/create-social-posts [file]` | **Sonnet** | From specific article |
+| `/create-social-posts --channel=linkedin` | **Sonnet** | Single channel |
 
-**analyze-webmaster** - Analyze Yandex Webmaster reports
-- Processes .zip exports with comprehensive metrics
-- Analyzes queries, pages, devices, geography
-- Identifies growth opportunities
-- Generates detailed analysis report
-- Usage: `/analyze-webmaster` or `/analyze-webmaster 2026-01-27`
+### Monthly Close Cycle
+| Skill | Model | Usage |
+|-------|-------|-------|
+| `/analyze-gsc [date]` | **Sonnet** | Analyze Google Search Console exports |
+| `/analyze-webmaster [date]` | **Sonnet** | Analyze Yandex Webmaster exports |
+| `/monthly-report [YYYY-MM]` | **Sonnet** | Generate monthly performance report |
 
-**analyze-gsc** - Analyze Google Search Console query trends
-- Processes .csv.gz query trend exports (7-day data)
-- Analyzes impression trends and patterns
-- Categorizes queries by intent and type
-- Cross-references with Yandex data
-- Usage: `/analyze-gsc` or `/analyze-gsc 2026-01-27`
+## Scripts (not skills — run via bash)
 
-### Content Quality
+| Script | Phase | Usage |
+|--------|-------|-------|
+| `content_audit/main.py --full --all` | 1, Monthly | Full content audit both sites |
+| `process_keywords.py` | 2 | Process keyword CSV exports |
 
-**review-article** - Run multi-critic review on content drafts
-- Runs 8 specialized critics: SEO, Russian Language, English Language, E-E-A-T, User Intent, Readability, Commercial, Image Prompts
-- Generates comprehensive review report with scores
-- Provides prioritized fix list and revision checklist
-- Usage: `/review-article` (most recent draft)
-- Usage: `/review-article [filename]` (specific file)
-- Usage: `/review-article --critic=seo` (single critic)
-- Usage: `/review-article --quick` (summary only)
+## Critic System (used by /review-article)
 
-**Critics Available:**
-- **SEO Critic**: Technical SEO compliance (keywords, meta, structure, links)
-- **Russian Language Critic**: Native-level language quality (grammar, phrasing, register)
-- **E-E-A-T Critic**: Experience, Expertise, Authority, Trust signals
-- **User Intent Critic**: Search intent satisfaction and completeness
-- **Readability Critic**: Scannability, structure, sentence/paragraph analysis
-- **Commercial Critic**: CTAs, product integration, conversion path
-- **Image Prompt Critic**: AI image prompt validation, brand consistency, technical specs
+| Critic | Model | Focus |
+|--------|-------|-------|
+| SEO | Sonnet | Keywords, meta, structure, links |
+| Russian Language | Opus | Grammar, phrasing, register |
+| English Language | Opus | Tone, clarity, professional writing |
+| E-E-A-T | Sonnet | Experience, expertise, authority, trust |
+| User Intent | Sonnet | Search intent satisfaction |
+| Readability | Haiku | Scannability, structure |
+| Commercial | Haiku | CTAs, conversion path |
+| Image Prompts | Haiku | Visual validation, brand consistency |
 
-## Skill Locations
+## Key Files
 
-All skill implementations are in subdirectories:
-- `start-session/SKILL.md`
-- `end-session/SKILL.md`
-- `monthly-report/SKILL.md`
-- `analyze-webmaster/SKILL.md`
-- `analyze-gsc/SKILL.md`
-- `review-article/SKILL.md`
-
-Critic definitions are in `.claude/critics/`:
-- `seo-critic.md`
-- `russian-language-critic.md`
-- `english-language-critic.md`
-- `eeat-critic.md`
-- `user-intent-critic.md`
-- `readability-critic.md`
-- `commercial-critic.md`
-- `image-prompt-critic.md`
-- `image-prompt-critic.md`
-
-## How Skills Work
-
-- **Model-invoked**: Claude can automatically load skills when relevant
-- **User-invoked**: Use `/skill-name` to invoke directly
-- **Context-aware**: Skills load based on conversation context and description
+- **Client data:** `.claude/client/client.md`
+- **Master workflow:** `.claude/workflows/SEO_WORKFLOW.md`
+- **SMM workflow:** `.claude/workflows/SMM_WORKFLOW.md`
+- **Writing reference:** `.claude/workflows/CONTENT_WRITING_GUIDE.md`
+- **Content prompts:** `.claude/prompts/content-generation.md`
+- **Critics:** `.claude/critics/*.md`
 
 ## Adding New Skills
 
-To add a new skill:
 1. Create directory: `.claude/skills/my-skill/`
 2. Create `SKILL.md` with YAML frontmatter and instructions
-3. Test with `/my-skill` or let Claude invoke automatically
-
-For detailed documentation, see [.claude/README.md](../README.md)
+3. Include model recommendation in skill body
+4. Reference `client.md` for any client-specific data
+5. Note workflow position (which phase it belongs to)
+6. Test with `/my-skill`

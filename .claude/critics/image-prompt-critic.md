@@ -6,26 +6,25 @@
 Validates AI image generation prompts for consistency, brand alignment, technical correctness, and likelihood of producing usable results.
 
 ## Context Files to Reference
-- `content/calendars/JANUARY_2026_CONTENT_CALENDAR.md` - Brand color palette, style guidelines
-- `.claude/memory/memory-bank.md` - Image requirements section
+- `.claude/client/client.md#brand` — Brand colors, visual style, image requirements
 
-## Brand Guidelines ([YOUR-DOMAIN])
+## Brand Guidelines
+
+→ Load from `client.md#brand` for current client. Defaults below:
 
 ### Required Specifications
-- **Aspect ratio:** 16:9 (1920x1080px)
-- **Style:** Professional, editorial, lifestyle photography
-- **Feel:** Warm, inviting, premium
-- **No:** Text, faces, logos, brand names
+→ See `client.md#brand` for aspect ratio, style, and prohibited elements.
 
 ### Color Palette
+→ See `client.md#brand` for current client color palette. Example:
 | Color | Hex | Usage |
 |-------|-----|-------|
-| Warm brown | #8B4513, #A0522D | Primary |
-| Cream/Ivory | #FFFDD0, #F5F5DC | Secondary |
-| Deep burgundy | #722F37 | Accent |
-| Olive | #808000 | Accent |
-| Warm gray | #9E9E9E | Neutral |
-| Soft black | #1C1C1C | Neutral |
+| Primary Blue | #2563EB | Primary (trust, professionalism) |
+| Success Green | #10B981 | Progress, achievements |
+| Amber/Gold | #F59E0B | Goals, highlights |
+| Clean White | #FFFFFF, #F9FAFB | Backgrounds |
+| Professional Gray | #6B7280, #374151 | Text, neutral elements |
+| Soft Black | #1F2937 | Contrast, dark mode |
 
 ## Evaluation Criteria
 
@@ -35,14 +34,13 @@ Validates AI image generation prompts for consistency, brand alignment, technica
 - [ ] Lighting direction specified
 - [ ] Camera angle/perspective clear
 - [ ] Depth of field indicated
-- [ ] **Quantity specified** (a shoe, a pair, 2 pairs, 3 pairs, etc.)
-- [ ] **Gender specified for footwear** (men's or women's shoe/loafer/sneaker)
+- [ ] **Scene type specified** (dashboard mockup, abstract visualization, team scene, etc.)
 
 ### 2. Style Consistency
-- [ ] Matches brand aesthetic (editorial, premium)
-- [ ] Color palette aligned with brand
-- [ ] Photography style specified (not illustration/3D unless intentional)
-- [ ] Consistent with other prompts in same campaign
+- [ ] Matches agency brand aesthetic (clean, modern, professional)
+- [ ] Color palette aligned with brand blues/greens
+- [ ] Photography or illustration style specified
+- [ ] Consistent with other images in same article
 
 ### 3. Prohibited Elements
 - [ ] No text requested (will fail or look bad)
@@ -52,18 +50,15 @@ Validates AI image generation prompts for consistency, brand alignment, technica
 - [ ] No brand logos (copyright)
 - [ ] No specific celebrity/person references
 - [ ] No trademarked product names visible
-
-**Exception:** Legs/feet from knees down are acceptable in Version B (Advertising Style) prompts, but must be secondary to shoe focus
+- [ ] No specific UI screenshots (will be inaccurate)
 
 ### 4. Clarity & Specificity
 - [ ] Subject clearly defined
-- [ ] **Exact quantity specified** (never ambiguous - must say "a pair", "2 pairs", "3 pairs", etc.)
-- [ ] **Gender specified** (men's/women's footwear - never ambiguous)
-- [ ] Composition described (flat lay, close-up, lifestyle, etc.)
+- [ ] Composition described (flat lay, aerial view, close-up, etc.)
 - [ ] Atmosphere/mood specified
 - [ ] Background described or implied
 - [ ] No contradictory instructions
-- [ ] **Modern aesthetic** (contemporary scenes, current fashion styling)
+- [ ] **Modern aesthetic** (contemporary scenes, current design trends)
 
 ### 5. AI Generation Likelihood
 - [ ] Achievable with current AI tools
@@ -75,115 +70,89 @@ Validates AI image generation prompts for consistency, brand alignment, technica
 ### 6. Article Relevance
 - [ ] Image supports article content
 - [ ] Matches section where it will be placed
-- [ ] Appropriate for target audience
+- [ ] Appropriate for target audience (professionals, teams, individuals)
 - [ ] Adds value (not decorative filler)
+
+## Agency Image Categories
+
+### Category 1: Marketing Strategy Visualization
+For strategy guides, marketing methodology articles.
+- Growth charts, funnel diagrams, performance dashboards
+- Clean abstract compositions, geometric shapes
+- Warm colors (amber, green) for growth and results
+
+**Example:**
+```
+"Abstract visualization of marketing growth: clean geometric path leading upward
+through graduated levels, transitioning from blue (#2563EB) to green (#10B981).
+Minimalist design, white background, soft gradient shadows. Professional agency
+aesthetic, modern flat design. 16:9 aspect ratio."
+```
+
+### Category 2: Agency Workspace Scenes
+For team collaboration, agency workflow articles.
+- Birds-eye view of workspaces (no faces)
+- Collaborative tools, whiteboards, sticky notes
+- Modern office or remote work settings
+
+**Example:**
+```
+"Overhead view of modern workspace: clean desk with laptop showing dashboard
+analytics, notebook with marketing strategy sketched, coffee cup. Warm natural
+lighting from left. Professional blue and white color scheme. No text, no
+faces, no logos. Modern minimalist office aesthetic. 16:9 aspect ratio."
+```
+
+### Category 3: Analytics Dashboard Concepts
+For analytics, reporting, and data-driven articles.
+- Abstract representations of dashboards
+- Progress bars, charts, achievement indicators
+- Blurred/conceptual (not actual screenshots)
+
+**Example:**
+```
+"Conceptual analytics dashboard visualization: blurred abstract interface showing
+progress charts and marketing analytics elements. Dominant blue (#2563EB) with green
+(#10B981) accent for completed items. Shallow depth of field, modern glass-
+morphism design effect. No readable text. Professional tech aesthetic.
+16:9 aspect ratio."
+```
+
+### Category 4: Business Growth Category 4: Personal Growth & Planning Planning
+For business strategy, growth planning articles.
+- Strategy docs, marketing plans, business dashboards (no faces)
+- Growth trajectories, ascending graphs, success paths
+- Warm, inviting tones
+
+**Example:**
+```
+"Flat lay composition: clean white desk with open planner, pen, and small
+potted succulent. Ambient warm lighting. Business planning theme with organized
+aesthetic. Professional lifestyle photography. No text, no faces, no logos.
+Cream and white tones with amber accent. 16:9 aspect ratio."
+```
 
 ## Common Prompt Issues
 
 ### Vague Prompts
-**Bad:** "A nice picture of loafers"
-**Good:** "Elegant flat lay composition of a pair of men's brown leather penny loafers on cream marble surface, soft natural side lighting, editorial fashion photography style, warm tones, modern minimalist aesthetic, 16:9 aspect ratio"
+**Bad:** "A nice picture about goals"
+**Good:** "Abstract visualization of marketing funnel: three interconnected stages representing awareness, consideration, and conversion. Clean geometric style, blue gradient (#2563EB to #93C5FD), white background. Modern professional agency aesthetic. 16:9 aspect ratio."
 
 ### Contradictory Instructions
-**Bad:** "Minimalist composition with many accessories and decorative elements"
-**Good:** "Minimalist composition with single loafer and one small accent item"
+**Bad:** "Minimalist composition with many charts and data and decorative elements"
+**Good:** "Minimalist composition with single progress chart element and clean negative space"
 
 ### Impossible Requests
-**Bad:** "Photorealistic image of specific Premiata Mick sneaker model with exact details"
-**Good:** "Premium Italian sneaker in earth tones, similar style to luxury fashion sneakers, editorial product photography"
+**Bad:** "Photorealistic screenshot of [YOUR-BRAND] analytics dashboard with exact UI"
+**Good:** "Conceptual dashboard visualization with blurred analytics elements, suggesting analytics dashboard without readable text"
 
 ### Text Requests (Always Fail)
-**Bad:** "Image with text overlay saying 'Loafers Guide'"
-**Good:** "Clean image with space for text overlay to be added in CMS"
+**Bad:** "Image with text overlay saying 'SEO Guide'"
+**Good:** "Clean image with open space in upper-right for text overlay to be added in CMS"
 
-### Face/Person Issues
-
-**IMPORTANT: Two-Version Approach for Lifestyle Shots**
-
-Since real photography is expensive, provide TWO versions for any lifestyle/styling/street photography compositions:
-
-#### Version A: E-E-A-T Safe (Conservative - Recommended Default)
-- **No human body parts** - product-only shots
-- **Higher success rate** with AI generation
-- **Lower risk** of uncanny valley effect
-- **Faster** generation with consistent quality
-
-**Example:**
-```
-Conservative: "A pair of women's beige suede platform loafers displayed on cobblestone
-European street surface. Low angle view emphasizing shoe silhouette. Morning
-golden hour sunlight. No people, no faces, no logos. 16:9 aspect ratio."
-```
-
-#### Version B: Advertising Style (Flexible - Advanced AI)
-- **Can include legs/feet** for styling context
-- **More realistic** advertising aesthetic
-- **Higher risk** of generation issues (distorted anatomy)
-- **Requires review** before publishing
-
-**Guidelines for Version B:**
-- ✅ Legs/feet visible from knees down or ankles only
-- ✅ Cropped compositions (no full body)
-- ✅ Focus on shoes, body parts secondary
-- ❌ NO faces or upper body
-- ❌ NO hands (frequently distorted)
-- ❌ NO full body shots
-
-**Example:**
-```
-Advertising Style: "Street style photography: women's beige suede platform loafers worn
-with modern wide-leg cropped trousers, showing ankles and lower calves. Contemporary
-urban setting, cobblestone European street. Low angle shot focusing on footwear, upper body
-out of frame. Morning golden hour sunlight creating warm shadows. No face visible,
-no hands, no logos. Professional fashion editorial photography, current 2026 aesthetic.
-16:9 aspect ratio."
-```
-
-**When to Use Which:**
-- **Use Version A (Safe)** for hero images, product showcases, detail shots
-- **Offer Version B (Flexible)** for lifestyle sections, styling guides, street style features
-- **Always provide both** so user can choose based on budget and risk tolerance
-
-### Missing Quantity Specification (Critical Issue)
-**Bad:** "Brown leather loafers on dark wood surface"
-**Why it fails:** AI doesn't know if you want 1 shoe, 2 shoes (a pair), or multiple pairs - will produce inconsistent results
-
-**Good:** "A pair of brown leather penny loafers on dark wood surface"
-**Better:** "Three pairs of Italian loafers (brown, black, burgundy) arranged on dark wood surface"
-
-**Quantity Guidelines:**
-- **"a shoe"** or **"single loafer"** - for extreme close-up detail shots
-- **"a pair of loafers"** - most common, shows complete product
-- **"2 pairs"** / **"3 pairs"** / **"4 pairs"** - for variety/comparison shots
-- Always be explicit - never leave quantity to AI interpretation
-
-### Missing Gender Specification (Critical Issue)
-**Bad:** "A pair of elegant loafers on marble surface"
-**Why it fails:** Men's and women's shoes have distinctly different silhouettes, proportions, and styling - AI needs this context to produce accurate results
-
-**Good:** "A pair of elegant men's leather loafers on marble surface"
-**Good:** "A pair of women's suede loafers with low heel on marble surface"
-
-**Gender Guidelines:**
-- **Always specify** "men's" or "women's" before the shoe type
-- Men's shoes: typically broader, lower profile, more angular
-- Women's shoes: typically narrower, may have heels, more varied silhouettes
-- Unisex: explicitly state "unisex" only when intentional (rare)
-
-### Outdated Styling (Major Issue)
-**Bad:** "Loafers with skinny jeans and vintage blazer"
-**Why it fails:** Dated fashion references make images look old and unprofessional
-
-**Good:** "Men's loafers with relaxed-fit tailored trousers, contemporary minimalist styling"
-**Good:** "Women's loafers with wide-leg cropped pants, modern street style aesthetic"
-
-**Modern Aesthetic Guidelines:**
-- Use contemporary fashion terminology (2024-2026 trends)
-- Reference modern silhouettes: relaxed fit, wide-leg, oversized, cropped
-- Avoid dated references: skinny jeans, vintage looks, retro styling
-- Specify "modern", "contemporary", or "current fashion" when describing outfits
-- Backgrounds should be contemporary: modern architecture, current urban settings
-- Avoid nostalgic or period-specific aesthetics unless explicitly requested
+### Outdated Styling
+**Bad:** "Corporate stock photo of business meeting"
+**Good:** "Modern remote work setup: minimalist desk with laptop and notebook, warm natural lighting, contemporary home office aesthetic"
 
 ## Output Format
 
@@ -205,9 +174,9 @@ no hands, no logos. Professional fashion editorial photography, current 2026 aes
 - [ ] Background: Vague - SPECIFY surface material
 
 ### Brand Alignment
-- [x] Style matches editorial aesthetic
+- [x] Style matches professional agency aesthetic
 - [x] Colors within brand palette
-- [ ] Premium feel could be stronger - ADD "luxury magazine aesthetic"
+- [ ] Professional feel could be stronger - ADD "modern tech company aesthetic"
 
 ### Prohibited Elements Check
 - [x] No text requested
@@ -249,15 +218,15 @@ When reviewing multiple prompts (e.g., all images for an article):
 - [ ] All prompts use same aspect ratio
 - [ ] Color palette consistent across prompts
 - [ ] Lighting style consistent
-- [ ] Photography style consistent
+- [ ] Photography/illustration style consistent
 - [ ] No conflicting aesthetics
 
 ### Individual Prompt Scores
 | # | Image Purpose | Score | Main Issue |
 |---|---------------|-------|------------|
 | 1 | Hero image | 8/10 | Missing lighting direction |
-| 2 | Types comparison | 6/10 | Too complex, simplify |
-| 3 | Care products | 9/10 | Good |
+| 2 | Feature diagram | 6/10 | Too complex, simplify |
+| 3 | Team workspace | 9/10 | Good |
 
 ### Prompts Needing Revision
 [List prompts that scored <7 with specific fixes]

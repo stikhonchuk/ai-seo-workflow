@@ -1,6 +1,6 @@
 # AI SEO Workflow
 
-An AI-assisted SEO content workflow system designed for e-commerce websites. Built with Claude Code integration for automated content planning, creation, and optimization.
+An AI-assisted SEO content workflow system for websites. Built with Claude Code integration for automated content planning, creation, review, and optimization.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -9,89 +9,120 @@ An AI-assisted SEO content workflow system designed for e-commerce websites. Bui
 A complete SEO workflow template that uses AI (Claude Code) to:
 
 - **Plan content** based on keyword research and competitor analysis
-- **Track progress** across multiple phases (audit → research → creation → monitoring)
-- **Automate repetitive tasks** via slash commands (skills)
+- **Write articles** with model-specific guidance (Opus/Sonnet/Haiku)
+- **Review content** through 8 specialized critics before publishing
+- **Amplify** via social media repurposing across 5 channels
+- **Track progress** across 8 phases (audit → research → creation → monitoring)
 - **Audit existing content** to prevent duplication and identify gaps
 - **Generate reports** for monthly SEO performance tracking
 
-This template was extracted from a real e-commerce SEO project that grew from 0 to 100+ articles with measurable traffic improvements.
+## Architecture: Client Data vs Process
+
+The key design principle: **client-specific data is separated from reusable process**.
+
+```
+.claude/
+├── client/
+│   └── client.md          ← CHANGE THIS: company, domains, services, CTAs, brand
+├── workflows/             ← REUSABLE: SEO phases, writing guide, SMM strategy
+├── skills/                ← REUSABLE: slash commands with model recommendations
+├── critics/               ← REUSABLE: content review criteria
+├── prompts/               ← REUSABLE: article generation templates
+├── context/               ← CURRENT STATE: phase, sprint, priorities
+└── memory/                ← LEARNINGS: strategic insights
+```
+
+**To start a new project:** Copy `client/client.example.md` → `client/client.md` and fill in your data. Everything else works immediately.
 
 ## Features
 
-### 🎯 Structured Workflow
-- 8-phase SEO workflow from audit to link building
-- Content calendar templates
-- Keyword research methodology
-- Competitor analysis framework
+### 8-Phase SEO Workflow
+```
+INITIAL SETUP (once):
+  Phase 1: Audit → Phase 2: Keywords → Phase 3: Competitors → Phase 4: Strategy
+                                                                      │
+MONTHLY CYCLE (repeat): ◄────────────────────────────────────────────┘
+  Phase 5: Write → Phase 6: Review & Publish → Phase 7: Amplify (SMM)
+      │                                                   │
+      └──── Monthly Close: Audit → Report → Plan ─────────┘
+```
 
-### 🤖 Claude Code Integration
-- `/start-session` - Load project context automatically
-- `/end-session` - Save progress and commit changes
-- `/monthly-report` - Generate monthly SEO reports
-- `/analyze-webmaster` - Analyze Yandex Webmaster data
-- `/analyze-gsc` - Analyze Google Search Console data
-- `/review-article` - Multi-critic content review
+### Skills with Model Recommendations
 
-### 📊 Content Audit Utility
+| Skill | Model | Phase | Purpose |
+|-------|-------|-------|---------|
+| `/start-session` | — | Start | Load context, show current phase |
+| `/brainstorm` | **Opus** | 1, 4 | Content ideation |
+| `/writing-guide` | **Sonnet** | 5 | Load writing standards |
+| `/review-article` | **Multi** | 6 | 8-critic content review |
+| `/create-social-posts` | **Sonnet** | 7 | Social media repurposing |
+| `/monthly-report` | **Sonnet** | Monthly | Performance report |
+| `/analyze-gsc` | **Sonnet** | Monthly | Google Search Console analysis |
+| `/analyze-webmaster` | **Sonnet** | Monthly | Yandex Webmaster analysis |
+| `/end-session` | — | End | Save progress, compliance check, commit |
+
+### 8-Critic Content Review System
+
+| Critic | Model | Focus |
+|--------|-------|-------|
+| SEO | Sonnet | Keywords, meta, structure, links |
+| Russian Language | Opus | Grammar, phrasing, native quality |
+| English Language | Opus | Tone, clarity, professional writing |
+| E-E-A-T | Sonnet | Authority signals, trust |
+| User Intent | Sonnet | Search intent satisfaction |
+| Readability | Haiku | Scannability, structure |
+| Commercial | Haiku | CTAs, conversion path |
+| Image Prompts | Haiku | Visual validation, brand consistency |
+
+### Content Audit Scripts
 Python scripts for site-wide content analysis:
 - Sitemap parsing and page scraping
-- Keyword extraction with Russian language support
+- Keyword extraction with Russian language support (pymorphy3)
 - Integration with GSC and Yandex Webmaster data
 - Gap analysis, CTR optimization, cannibalization detection
-
-### 📝 Context Management
-- `active-context.md` - Current sprint priorities
-- `progress.md` - Phase completion tracking
-- `memory-bank.md` - Long-term project knowledge
 
 ## Quick Start
 
 ### 1. Clone and Configure
 
 ```bash
-# Clone the template
-git clone https://github.com/YOUR-USERNAME/ai-seo-workflow.git my-seo-project
+git clone https://github.com/stikhonchuk/ai-seo-workflow.git my-seo-project
 cd my-seo-project
-
-# Remove template git history and start fresh
-rm -rf .git
-git init
+rm -rf .git && git init
 ```
 
-### 2. Configure for Your Project
+### 2. Set Up Client Profile
 
 ```bash
-# Copy config template
+cp .claude/client/client.example.md .claude/client/client.md
+```
+
+Edit `client.md` with your project details:
+- Company name, domains, services
+- Target audiences and content pillars
+- CTAs, brand colors, social channels
+- Seed keywords, competitors
+
+### 3. Configure Content Audit
+
+```bash
 cp scripts/content_audit/config.example.py scripts/content_audit/config.py
-
-# Edit config.py with your domain
-# DOMAIN = "www.your-domain.com"
+# Edit config.py with your domains
 ```
 
-### 3. Update Context Files
-
-Edit these files with your project details:
-- `.claude/context/active-context.md` - Replace `[YOUR-PROJECT]`, `[DATE]` placeholders
-- `.claude/context/progress.md` - Set your timeline and milestones
-- `.claude/memory/memory-bank.md` - Add your business context
-
-### 4. Install Python Dependencies (for content audit)
+### 4. Install Python Dependencies
 
 ```bash
-cd scripts/content_audit
 python -m venv venv
-source venv/bin/activate  # or `venv\Scripts\activate` on Windows
-pip install -r requirements.txt
+source venv/bin/activate
+pip install -r scripts/content_audit/requirements.txt
 ```
 
-### 5. Start Using with Claude Code
+### 5. Start Using
 
 ```bash
-# In your project directory
-claude
-
-# Start a session
-/start-session
+claude           # Start Claude Code
+/start-session   # Load context, see current phase
 ```
 
 ## Project Structure
@@ -99,222 +130,119 @@ claude
 ```
 .
 ├── .claude/
-│   ├── context/           # Current state (active-context.md, progress.md)
-│   ├── memory/            # Long-term knowledge (memory-bank.md)
-│   ├── skills/            # Slash commands
+│   ├── client/              # Client-specific data (change per project)
+│   │   └── client.md        # Company, domains, services, CTAs, brand
+│   ├── context/             # Current state
+│   │   ├── active-context.md  # Phase, sprint, priorities
+│   │   └── progress.md       # Phase completion, milestones
+│   ├── memory/              # Long-term knowledge
+│   │   └── memory-bank.md
+│   ├── skills/              # Slash commands (reusable)
 │   │   ├── start-session/
 │   │   ├── end-session/
+│   │   ├── brainstorm/
+│   │   ├── writing-guide/
+│   │   ├── review-article/
+│   │   ├── create-social-posts/
 │   │   ├── monthly-report/
 │   │   ├── analyze-gsc/
-│   │   ├── analyze-webmaster/
-│   │   └── review-article/
-│   └── workflows/         # Process documentation
-│       ├── SEO_WORKFLOW.md
-│       ├── CONTENT_WRITING_GUIDE.md
-│       ├── KEYWORD_RESEARCH_TEMPLATE.md
-│       └── ...
+│   │   └── analyze-webmaster/
+│   ├── critics/             # Content review criteria (reusable)
+│   ├── workflows/           # Process documentation (reusable)
+│   │   ├── SEO_WORKFLOW.md            # Master workflow
+│   │   ├── SMM_WORKFLOW.md            # Social media strategy
+│   │   ├── CONTENT_WRITING_GUIDE.md   # Writing standards
+│   │   ├── KEYWORD_RESEARCH_TEMPLATE.md
+│   │   ├── CONTENT_CALENDAR_TEMPLATE.md
+│   │   ├── MONTHLY_REPORT_TEMPLATE.md
+│   │   └── monthly-content-audit.md
+│   └── prompts/             # Article generation templates
+│       └── content-generation.md
 ├── scripts/
-│   ├── content_audit/     # Python audit utility
-│   └── anonymize.py       # Anonymization helper
+│   ├── content_audit/       # Python audit utility
+│   ├── process_keywords.py  # Keyword CSV processor
+│   └── anonymize.py         # Anonymization helper
 ├── content/
-│   ├── drafts/            # Work in progress
-│   ├── published/         # Final content
-│   └── calendars/         # Monthly plans
+│   ├── drafts/              # Work in progress
+│   ├── published/           # Final content
+│   ├── reviews/             # Critic review reports
+│   ├── social/              # Social media posts
+│   └── calendars/           # Monthly plans
 └── research/
-    ├── keywords/          # Keyword research data
-    ├── competitors/       # Competitor analysis
-    ├── analytics/         # Performance data
-    └── content-audit/     # Audit outputs
+    ├── keywords/            # Keyword research data
+    ├── competitors/         # Competitor analysis
+    ├── analytics/           # Performance data
+    └── content-audit/       # Audit outputs
 ```
-
-## Workflow Overview
-
-### Phase 1: Website Audit
-Analyze current site state, identify technical issues, document baseline metrics.
-
-### Phase 2: Keyword Research
-Research 100-200 target keywords, prioritize by volume/difficulty/intent.
-
-### Phase 3: Competitor Analysis
-Identify 3-5 competitors, analyze their strategies, find content gaps.
-
-### Phase 4: Content Strategy
-Create content calendar, define content pillars, plan first month.
-
-### Phase 5: Content Creation
-Write articles using templates, run multi-critic reviews, generate images.
-
-### Phase 6: Publishing
-Optimize, publish, submit to search engines, share on social.
-
-### Phase 7: Monitoring
-Track rankings, analyze performance, update underperforming content.
-
-### Phase 8: Link Building
-Internal linking, guest posts, digital PR.
 
 ## Using with Multiple Projects
 
-This template supports a "hub and spoke" model for managing multiple SEO projects with shared tooling:
+With client data separated into `client.md`, managing multiple projects is straightforward:
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     PUBLIC TEMPLATE REPO                        │
-│                    ai-seo-workflow (GitHub)                     │
-│                                                                 │
-│  - External contributors fork & PR here                         │
-│  - You cherry-pick improvements from private repos              │
-│  - Tagged releases (v1.0, v1.1, v2.0)                          │
-└─────────────────────────────────────────────────────────────────┘
-         ▲                    │                    ▲
-         │ cherry-pick        │ git pull           │ cherry-pick
-         │ (anonymized)       │ upstream           │ (anonymized)
-         │                    ▼                    │
-┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐
-│   project-a     │   │   project-b     │   │   project-c     │
-│    (private)    │   │    (private)    │   │    (private)    │
-└─────────────────┘   └─────────────────┘   └─────────────────┘
+┌─────────────────────────────────────────────┐
+│         PUBLIC TEMPLATE REPO                 │
+│        ai-seo-workflow (GitHub)              │
+│                                              │
+│  client/client.example.md  ← placeholder    │
+│  workflows, skills, critics ← reusable      │
+└─────────────────────────────────────────────┘
+         ▲                    │
+         │ push improvements  │ clone/pull
+         │ (already generic)  │ (just fill client.md)
+         │                    ▼
+┌────────────────┐  ┌────────────────┐  ┌────────────────┐
+│  project-a     │  │  project-b     │  │  project-c     │
+│  client.md: A  │  │  client.md: B  │  │  client.md: C  │
+│  (private)     │  │  (private)     │  │  (private)     │
+└────────────────┘  └────────────────┘  └────────────────┘
 ```
 
-### Initial Setup for New Private Project
+### Contributing Back to Template
+
+Since workflows/skills/critics are already generic (they reference `client.md`), contributing improvements back is simple:
 
 ```bash
-# Option 1: Clone template (recommended for new projects)
-git clone https://github.com/YOUR-USERNAME/ai-seo-workflow.git my-project
-cd my-project
-rm -rf .git && git init
-git remote add origin git@github.com:YOUR-USERNAME/my-project.git
-git remote add upstream https://github.com/YOUR-USERNAME/ai-seo-workflow.git
+# 1. Make improvement in your project (it's already generic)
+# 2. Copy changed files to template repo
+cp .claude/skills/my-skill/SKILL.md ~/ai-seo-workflow/.claude/skills/my-skill/SKILL.md
 
-# Option 2: Add upstream to existing project
-cd existing-project
-git remote add upstream https://github.com/YOUR-USERNAME/ai-seo-workflow.git
-```
-
-### Workflow: Pulling Template Updates
-
-```bash
-# In your private project
-git fetch upstream
-git merge upstream/main
-# Or cherry-pick specific commits:
-git cherry-pick <commit-hash>
-```
-
-### Workflow: Contributing Improvements Back to Template
-
-**Step 1: Make and test improvement in private project**
-```bash
-# In your private project
-# Edit files, test changes
-git add <files>
-git commit -m "Add feature X"
-git push origin main
-```
-
-**Step 2: Check for sensitive data**
-```bash
-# Run anonymization check on changed files
-python ~/path-to-template/scripts/anonymize.py --check <file-or-directory>
-```
-
-**Step 3: Copy to template and anonymize**
-```bash
-# Copy file to template
-cp <file> ~/path-to-template/<same-path>/
-
-# In template directory, run anonymize
-cd ~/path-to-template
-python scripts/anonymize.py <file-or-directory>
-
-# Review changes
-git diff
-```
-
-**Step 4: Commit and push to template**
-```bash
-git add <files>
-git commit -m "Add feature X"
-git push origin main
-```
-
-**Step 5: Pull to other private projects**
-```bash
-cd ~/other-project
-git fetch upstream
-git cherry-pick <commit-hash>  # or git merge upstream/main
-git push origin main
-```
-
-### Anonymization Script
-
-The `scripts/anonymize.py` helps prepare files for public contribution:
-
-```bash
-# Check for unanonymized data
+# 3. Verify no client data leaked
 python scripts/anonymize.py --check .
 
-# List current replacement patterns
-python scripts/anonymize.py --list-patterns
-
-# Dry run - see what would change
-python scripts/anonymize.py --dry-run .
-
-# Apply anonymization
-python scripts/anonymize.py .
+# 4. Commit and push to template
+cd ~/ai-seo-workflow
+git add . && git commit -m "Add my-skill"
+git push origin main
 ```
-
-**Customize patterns** by editing `REPLACEMENTS` list in `scripts/anonymize.py`:
-```python
-REPLACEMENTS = [
-    (r'your-domain\.com', '[YOUR-DOMAIN]'),
-    (r'Your Name', '[OWNER_NAME]'),
-    # Add your patterns...
-]
-```
-
-## Content Audit Utility
-
-### Full Audit
-
-```bash
-cd scripts/content_audit
-source venv/bin/activate
-python main.py --full
-```
-
-### Output
-- `research/content-audit/site-content-audit.csv` - Excel-friendly report
-- `research/content-audit/content-gaps.md` - Pages needing improvement
-- Gap analysis: keyword gaps, CTR opportunities, cannibalization
-
-### Monthly Workflow
-Run audit on last day of month before generating monthly report.
 
 ## Customization
 
 ### Adding New Skills
+1. Create `.claude/skills/my-skill/SKILL.md`
+2. Include model recommendation in body text
+3. Reference `client.md` for any client-specific data
+4. Note workflow position (which phase it belongs to)
 
-Create folder in `.claude/skills/your-skill/` with:
-- `SKILL.md` - Skill definition and instructions
-
-### Modifying Workflows
-
-Edit files in `.claude/workflows/` to match your process.
-
-### Extending Content Audit
-
-Modify Python modules in `scripts/content_audit/`:
-- `config.py` - Domain and patterns
-- `sitemap_parser.py` - URL parsing logic
-- `page_scraper.py` - Content extraction
-- `gap_analyzer.py` - SEO analysis
+### client.md Sections
+Your `client.md` should include these sections (see `client.example.md`):
+- `#company` — name, tagline, industry
+- `#domains` — sites, languages, search engines
+- `#services` — what the business offers
+- `#target-audiences` — personas
+- `#content-pillars` — topic categories
+- `#ctas` — call-to-action language (EN + RU)
+- `#brand` — colors, visual style, image requirements
+- `#social-media-channels` — platforms, tones, rules
+- `#site-structure` — URL patterns for link validation
+- `#publishing-schedule` — frequency, days, content mix
+- `#content-standards` — word count, density, link requirements
 
 ## Requirements
 
-- **Claude Code** - Anthropic's CLI tool
-- **Python 3.8+** - For content audit scripts
-- **Git** - Version control
+- **Claude Code** — Anthropic's CLI tool
+- **Python 3.8+** — For content audit scripts
+- **Git** — Version control
 
 ### Python Dependencies
 ```
@@ -323,26 +251,15 @@ beautifulsoup4>=4.11.0
 pymorphy3>=2.0.0  # Russian morphology (optional)
 ```
 
-## Contributing
-
-Contributions welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run `python scripts/anonymize.py --check .` to ensure no private data
-5. Submit a pull request
-
 ## License
 
-MIT License - see [LICENSE](LICENSE) file.
+MIT License — see [LICENSE](LICENSE) file.
 
 ## Acknowledgments
 
 - Built with [Claude Code](https://claude.ai/code) by Anthropic
-- Inspired by real-world e-commerce SEO projects
 - Russian language support via [pymorphy3](https://github.com/no-madsoul/pymorphy3)
 
 ---
 
-**Note:** This is a template. Replace all `[YOUR-PROJECT]`, `[YOUR-DOMAIN]`, and `[DATE]` placeholders with your actual project details.
+**Note:** Copy `client.example.md` → `client.md` and fill in your project details to get started.
